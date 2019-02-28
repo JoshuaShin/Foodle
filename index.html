@@ -1,17 +1,78 @@
-<!DOCTYPE html>
+<!doctype <!DOCTYPE html>
 <html>
 <head>
     <style>
         body {
-            background-color: whitesmoke;
-            color: rgb(45,45,45);
+            /* background-color: whitesmoke; */
+            background-color: rgb(255, 185, 0);
         }
+        h1 {
+            font-size: 50;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: white;
+        }
+        #search {
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 250px; /*TODO: DO NOT HARD CODE*/
+        }
+        #searchBar {
+            border: none;
+            outline: none;
+            padding: 6px;
+            width: 50%;
+            height: 35px;
+            font-size: 17px;
+        }
+        #searchButton {
+            border: 1px;
+            outline: none;
+            padding: 6px;
+            height: 35px;
+            width: 35px;
+            font-size: 16px;
+            background-color: white;
+            color: rgb(45, 45, 45);
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
     </style>
 </head>
 <body>
-    <h1>Foodle</h1>
-    <p>Project manager: Joshua Shin</p>
-    <p>Designer : Jason</p>
-    <p>Coder : Jayce</p>
+
+    <div id = "search">
+        <h1>FOODLE</h1>
+        <input id = "searchBar" type="text" placeholder="#Carrots #Peas #Potatoes #Lunch #Vegan">
+        <button id = "searchButton">Q</button>
+    </div>
+
+    <script>
+
+        let searchBar = document.getElementById("searchBar");
+        let searchBUtton = document.getElementById("searchButton");
+
+        // Detect enter press in search bar
+        searchBar.addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                search(searchBar.value);
+            }
+        });
+
+        // Detect click in search button
+        searchBUtton.addEventListener("click", function(event) {
+            search(searchBar.value);
+        });
+
+        // Begin search
+        function search(searchPhrase) {
+            console.log(searchPhrase);
+        }
+
+    </script>
+
 </body>
 </html>
