@@ -1,19 +1,92 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel = "stylesheet" type = "text/css" href = "css/style.css">
     <style>
-        body {
-            background-color: whitesmoke;
-            color: rgb(45,45,45);
+        .recipe_result {
+            background-color: white;
+            padding: 10px;
+            padding-left: 20px;
+        }
+        #result_holder {
+            padding-left: 1%; padding-right: 1%;
+        }
+        a {
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <h1>
-        Search Result Page
-    </h1>
-    <p>
-        This is the search result page.
-    </p>
+    <div>
+        <div id = "search_top">
+            <h1>FOODLE</h1>
+            <input id = "searchBar" type = "text" placeholder = "#Carrots #Peas #Potatoes #Lunch #Vegan">
+            <button id = "searchButton">Q</button>
+        </div>
+        
+        <br/>
+
+        <div id = "result_holder">
+
+            <div class = "recipe_result">
+                <a href = "https://www.bcit.ca/study/outlines/20191043402">
+                    <h2> &#8226 Applied Mathematics </h2>
+                    <p> This course is a blah blah blah blah... (more) </p>
+                </a>
+            </div>
+            <br/>
+
+            <div class = "recipe_result">
+                <a href = "https://www.bcit.ca/study/outlines/20191043402">
+                    <h2> &#8226 Applied Mathematics </h2>
+                    <p> This course is a blah blah blah blah... (more) </p>
+                </a>
+            </div>
+            <br/>
+
+            <div class = "recipe_result">
+                <a href = "https://www.bcit.ca/study/outlines/20191043402">
+                    <h2> &#8226 Applied Mathematics </h2>
+                    <p> This course is a blah blah blah blah... (more) </p>
+                </a>
+            </div>
+            <br/>
+
+
+
+        </div>
+        
+    </div>
+
+    <script>
+        document.write(sessionStorage.getItem("searchPhrase"))
+        console.log(sessionStorage.getItem("searchPhrase"))
+
+        
+
+
+
+        let searchBar = document.getElementById("searchBar");
+        let searchBUtton = document.getElementById("searchButton");
+
+        // Detect enter press in search bar
+        searchBar.addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                search(searchBar.value);
+            }
+        });
+
+        // Detect click in search button
+        searchBUtton.addEventListener("click", function(event) {
+            search(searchBar.value);
+        });
+
+        // Begin search
+        function search(searchPhrase) {
+            sessionStorage.setItem("searchPhrase", searchPhrase)
+            window.location.href = "./search_result.html";
+        }
+    </script>
 </body>
 </html>
