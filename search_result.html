@@ -59,8 +59,9 @@
     </div>
 
     <script>
-        document.write(sessionStorage.getItem("searchPhrase"))
-        console.log(sessionStorage.getItem("searchPhrase"))
+        document.getElementById('searchBar').placeholder = sessionStorage.getItem("searchPhrase");
+        console.log(sessionStorage.getItem("searchPhrase"));
+        console.log(sessionStorage.getItem("searchPhraseList"));
 
         
 

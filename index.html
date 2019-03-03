@@ -1,38 +1,114 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <link rel = "stylesheet" type = "text/css" href = "css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
+
 <body>
 
 
-    <div id = "search">
+    <div id="search">
         <h1>FOODLE</h1>
-        <input id = "searchBar" type = "text" placeholder = "#Carrots #Peas #Potatoes #Lunch #Vegan">
-        <button id = "searchButton">Q</button>
+        <input id="searchBar" type="text" placeholder="#Carrots #Peas #Potatoes #Lunch #Vegan">
+        <button id="searchButton">Q</button>
     </div>
 
     <script>
 
         let searchBar = document.getElementById("searchBar");
-        let searchBUtton = document.getElementById("searchButton");
+        let searchButton = document.getElementById("searchButton");
+        
+        // Needed for past search result
+        var clean = ''
+
+        // Formats the search input for result use
+        function filterSearchResult(x) {
+            stringLength = x.length
+
+        // Deletes the first hashtag
+        if (x[0] == '#') {
+            x = x.substr(1);
+        }
+        else {
+            x
+        }
+
+        // Splits the #
+        while (x.includes('#')) {
+            x = x.split('#', stringLength);
+
+        }
+
+        // Splits the ,
+        while (x.includes(',')) {
+            x = x.split(',', stringLength);
+        }
+
+        // Gets rid of spaces and commas in the string
+        for (i = 0; i <x.length; i++){
+            x[i] = x[i].replace(",", "")
+            x[i] = x[i].trim();
+            x[i] = "#" + x[i];
+        }
+
+        // Adds the items into a string
+        for (i = 0; i <x.length; i++){
+            clean = clean + x[i] + ' '
+        }
+        return clean
+        }
+
+        // Filters the # and , in search bar
+        function filterSearch(x) {
+            stringLength = x.length
+
+        // Deletes the first hashtag
+        if (x[0] == '#') {
+            x = x.substr(1);
+        }
+        else {
+            x
+        }
+
+        // Splits the #
+        while (x.includes('#')) {
+            x = x.split('#', stringLength);
+
+        }
+
+        // Splits the ,
+        while (x.includes(',')) {
+            x = x.split(',', stringLength);
+        }
+
+        // Gets rid of spaces and commas in the string
+        for (i = 0; i <x.length; i++){
+            x[i] = x[i].replace(",", "")
+            x[i] = x[i].trim();
+        }
+        return x;
+        }
 
         // Detect enter press in search bar
-        searchBar.addEventListener("keyup", function(event) {
+        searchBar.addEventListener("keyup", function (event) {
             event.preventDefault();
             if (event.keyCode === 13) {
-                search(searchBar.value);
+                search(filterSearch(searchBar.value));
+                sessionStorage.setItem('searchPhrase', filterSearchResult(searchBar.value));
             }
         });
 
         // Detect click in search button
-        searchBUtton.addEventListener("click", function(event) {
-            search(searchBar.value);
+        searchButton.addEventListener("click", function (event) {
+            search(filterSearch(searchBar.value));
+            sessionStorage.setItem('searchPhrase', filterSearchResult(searchBar.value));
         });
 
         // Begin search
         function search(searchPhrase) {
-            sessionStorage.setItem('searchPhrase', searchPhrase)
+            sessionStorage.setItem('searchPhraseList', searchPhrase)
+            
             window.location.href = "./search_result.html";
         }
 
@@ -40,4 +116,5 @@
 
 
 </body>
+
 </html>
