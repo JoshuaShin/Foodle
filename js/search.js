@@ -96,6 +96,7 @@ function buildSearchPhraseResult(searchPhrase) {
     searchPhraseList = [];
     searchItem = "";
     for (let i = 0; i < searchPhrase.length; i++) {
+        // Add word to list
         if (searchPhrase[i] == "#" || searchPhrase[i] == ",") {
             if (searchItem != "") {
                 searchPhraseList.push(searchItem);
@@ -103,10 +104,14 @@ function buildSearchPhraseResult(searchPhrase) {
             }
             continue;
         }
+        // Build word
         if (searchPhrase[i] != " ") {
             searchItem += searchPhrase[i];
         }
     }
-    searchPhraseList.push(searchItem);
+    // Last word case
+    if (searchItem.length > 0) {
+        searchPhraseList.push(searchItem);
+    }
     return searchPhraseList;
 }
