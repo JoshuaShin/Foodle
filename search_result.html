@@ -53,7 +53,7 @@
         console.log("searchPhrase: ", sessionStorage.getItem("searchPhrase"));
         console.log("searchPhraseList: ", JSON.parse(sessionStorage.getItem("searchPhraseList")));
 
-        document.getElementById('searchBar').placeholder = sessionStorage.getItem("searchPhrase");
+        document.getElementById('searchBar').value = sessionStorage.getItem("searchPhrase");
         let searchPharseList = JSON.parse(sessionStorage.getItem("searchPhraseList")); //["chicken", "onion", "pepper", "rice"];
 
         Array.prototype.diff = function(arr) {
@@ -64,7 +64,7 @@
 
         for (i = 0 ; i < recipeData.length; i++) {
             let result = searchPharseList.diff(recipeData[i][1]);
-            if (result.length <= 1) {
+            if (result.length <= 0) {
                 displayRecipeResultElement(recipeData[i])
             }
         }
