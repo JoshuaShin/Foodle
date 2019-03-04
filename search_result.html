@@ -3,96 +3,86 @@
 <head>
     <link rel = "stylesheet" type = "text/css" href = "css/style.css">
     <style>
-        .recipe_result {
-            background-color: white;
-            padding: 10px;
+        .recipeResult {
+            background-color: rgba(45, 45, 45, 0.60);
+            padding: 1px;
             padding-left: 20px;
-        }
-        #result_holder {
-            padding-left: 1%; padding-right: 1%;
         }
         a {
             text-decoration: none;
+        }
+        #resultHolder {
+            padding-left: 23.5%; padding-right: 23.5%;
         }
     </style>
 </head>
 <body>
     <div>
-        <div id = "search_top">
-            <h1>FOOD</h1>
+        <div id = "searchTop">
+            <a id = "foodleLogo" href = "./index.html"><h1>FOODLE</h1></a>
             <input id = "searchBar" type = "text" placeholder = "#Carrots #Peas #Potatoes #Lunch #Vegan">
             <button id = "searchButton">Q</button>
         </div>
         
         <br/>
 
-<!--     <div id = "result_holder">
-
-            <div class = "recipe_result">
-                <a href = "https://www.bcit.ca/study/outlines/20191043402">
-                    <h2> &#8226 Applied Mathematics </h2>
-                    <p> This course is a blah blah blah blah... (more) </p>
-                </a>
-            </div>
-            <br/>
-
-            <div class = "recipe_result">
-                <a href = "https://www.bcit.ca/study/outlines/20191043402">
-                    <h2> &#8226 Applied Mathematics </h2>
-                    <p> This course is a blah blah blah blah... (more) </p>
-                </a>
-            </div>
-            <br/>
-
-            <div class = "recipe_result">
-                <a href = "https://www.bcit.ca/study/outlines/20191043402">
-                    <h2> &#8226 Applied Mathematics </h2>
-                    <p> This course is a blah blah blah blah... (more) </p>
-                </a>
-            </div>
-            <br/>
-
-
-
+        <div id = "resultHolder">
         </div> 
--->        
     </div>
 
+    <script src="js/search.js"></script>
     <script>
         
+        // Mock database
+        let recipeData = new Array();
+        recipeData[0] = ["ChickenCurry", ["chicken", "onion", "curry", "pepper", "carrot"]];
+        recipeData[1] = ["HotChickenpot", ["chicken", "onion", "pepper", "greenonion", "carrot", "rice"]];
+        recipeData[2] = ["Bulgogi", ["beef", "onion", "greenonion", "carrot", "soysauce"]];
+        recipeData[3] = ["Salmonpoke", ["salmon", "avocado", "rice", "cucumber", "lectuce"]];
+        recipeData[4] = ["Soya", ["ham", "sausage", "onion", "pepper", "Ketchup"]];
+        recipeData[5] = ["Donkatsu", ["pork", "cabbage", "onion", "corn"]];
+        recipeData[6] = ["Kimbab", ["ham", "sausage", "spinich", "cucumber", "carrot", "rice"]];
+        recipeData[7] = ["Tuna Sandwich", ["tuna", "bread", "lectuce", "cheese", "mayonaise"]];
+        recipeData[8] = ["Pizza", ["olive", "cheese", "ham", "mushroom", "pepper", "tomato", "tamatosauce"]];
+        // recipeData[0] = ["a", ["a"]];
+        // recipeData[1] = ["ab", ["a", "b"]];
+        // recipeData[2] = ["abc", ["a", "b", "c"]];
+        // recipeData[3] = ["abcd", ["a", "b", "c", "d"]];
+
+        console.log("searchPhrase: ", sessionStorage.getItem("searchPhrase"));
+        console.log("searchPhraseList: ", JSON.parse(sessionStorage.getItem("searchPhraseList")));
+
         document.getElementById('searchBar').placeholder = sessionStorage.getItem("searchPhrase");
-        console.log(sessionStorage.getItem("searchPhrase"));
-        console.log(sessionStorage.getItem("searchPhraseList"));
+        let searchPharseList = JSON.parse(sessionStorage.getItem("searchPhraseList")); //["chicken", "onion", "pepper", "rice"];
 
-        var receipedata = new Array();
-            receipedata[0] = ["ChickenCurry", ["chicken", "onion", "curry", "pepper", "carrot"]];
-            receipedata[1] = ["HotChickenpot", ["chicken", "onion", "pepper", "greenonion", "carrot", "rice"]];
-            receipedata[2] = ["bulgogi", ["beef", "onion", "greenonion", "carrot", "soysauce"]];
-            receipedata[3] = ["Salmonpoke", ["salmon", "avocado", "rice", "cucumber", "lectuce"]];
-            receipedata[4] = ["Soya", ["ham", "sausage", "onion", "pepper", "Ketchup"]];
-            receipedata[5] = ["donkatsu", ["pork", "cabbage", "onion", "corn"]];
-            receipedata[6] = ["kimbab", ["ham", "sausage", "spinich", "cucumber", "carrot", "rice"]];
-            receipedata[7] = ["tunasandwich", ["tuna", "bread", "lectuce", "cheese", "mayonaise"]];
-            receipedata[8] = ["pizza", ["olive", "cheese", "ham", "mushroom", "pepper", "tomato", "tamatosauce"]];
-
-        
-        console.log(sessionStorage.getItem("searchPhrase"))
-
-        let searchBar = document.getElementById("searchBar");
-        let searchBUtton = document.getElementById("searchButton");
-
-        var searchPharse = ["chicken", "onion", "pepper", "rice"]
-
-        Array.prototype.diff = function(a) {
-            return this.filter(function(i) {return a.indexOf(i) < 0;});
+        Array.prototype.diff = function(arr) {
+            return this.filter( function(val) {
+                return arr.indexOf(val) < 0;
+            });
         };
 
-        for (i = 0 ; i < receipedata.length; i++) {
-            var result = searchPharse.diff(receipedata[i][1]);
+        for (i = 0 ; i < recipeData.length; i++) {
+            let result = searchPharseList.diff(recipeData[i][1]);
             if (result.length <= 1) {
-                document.write(receipedata[i][0] + '<br>')
+                displayRecipeResultElement(recipeData[i])
             }
-            
+        }
+
+        function displayRecipeResultElement(recipeData) {
+            document.getElementById("resultHolder").innerHTML += 
+            `
+            <div class = "recipeResult">
+                <a href = "https://www.google.ca/">
+                    <h2 style = "color: whitesmoke;"> ` + recipeData[0] + ` </h2>    
+                    <p style = "color: whitesmoke;"> ` + buildIngredientsList(recipeData) + ` </p>
+                </a>
+            </div>
+            <br/>
+            `
+        }
+
+        function buildIngredientsList(recipeData) {
+            return recipeData[1].toString();
         }
 
     </script>
