@@ -19,14 +19,14 @@
 <body>
     <div>
         <div id = "search_top">
-            <h1>FOODLE</h1>
+            <h1>FOOD</h1>
             <input id = "searchBar" type = "text" placeholder = "#Carrots #Peas #Potatoes #Lunch #Vegan">
             <button id = "searchButton">Q</button>
         </div>
         
         <br/>
 
-        <div id = "result_holder">
+<!--     <div id = "result_holder">
 
             <div class = "recipe_result">
                 <a href = "https://www.bcit.ca/study/outlines/20191043402">
@@ -54,39 +54,43 @@
 
 
 
-        </div>
-        
+        </div> 
+-->        
     </div>
 
     <script>
-        document.write(sessionStorage.getItem("searchPhrase"))
-        console.log(sessionStorage.getItem("searchPhrase"))
+        
+        var receipedata = new Array();
+            receipedata[0] = ["ChickenCurry", ["chicken", "onion", "curry", "pepper", "carrot"]];
+            receipedata[1] = ["HotChickenpot", ["chicken", "onion", "pepper", "greenonion", "carrot", "rice"]];
+            receipedata[2] = ["bulgogi", ["beef", "onion", "greenonion", "carrot", "soysauce"]];
+            receipedata[3] = ["Salmonpoke", ["salmon", "avocado", "rice", "cucumber", "lectuce"]];
+            receipedata[4] = ["Soya", ["ham", "sausage", "onion", "pepper", "Ketchup"]];
+            receipedata[5] = ["donkatsu", ["pork", "cabbage", "onion", "corn"]];
+            receipedata[6] = ["kimbab", ["ham", "sausage", "spinich", "cucumber", "carrot", "rice"]];
+            receipedata[7] = ["tunasandwich", ["tuna", "bread", "lectuce", "cheese", "mayonaise"]];
+            receipedata[8] = ["pizza", ["olive", "cheese", "ham", "mushroom", "pepper", "tomato", "tamatosauce"]];
 
         
-
-
+        console.log(sessionStorage.getItem("searchPhrase"))
 
         let searchBar = document.getElementById("searchBar");
         let searchBUtton = document.getElementById("searchButton");
 
-        // Detect enter press in search bar
-        searchBar.addEventListener("keyup", function(event) {
-            event.preventDefault();
-            if (event.keyCode === 13) {
-                search(searchBar.value);
+        var searchPharse = ["chicken", "onion", "pepper", "rice"]
+
+        Array.prototype.diff = function(a) {
+            return this.filter(function(i) {return a.indexOf(i) < 0;});
+        };
+
+        for (i = 0 ; i < receipedata.length; i++) {
+            var result = searchPharse.diff(receipedata[i][1]);
+            if (result.length <= 1) {
+                document.write(receipedata[i][0] + '<br>')
             }
-        });
-
-        // Detect click in search button
-        searchBUtton.addEventListener("click", function(event) {
-            search(searchBar.value);
-        });
-
-        // Begin search
-        function search(searchPhrase) {
-            sessionStorage.setItem("searchPhrase", searchPhrase)
-            window.location.href = "./search_result.html";
+            
         }
+
     </script>
 </body>
 </html>
