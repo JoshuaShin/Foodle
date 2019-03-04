@@ -32,6 +32,7 @@ h1 {
     height: 30%; /*TODO: make better search bar centering*/
 }
 #searchBar {
+    border-radius: 1px;
     border: none;
     outline: none;
     padding: 6px;
@@ -40,12 +41,13 @@ h1 {
     font-size: 17px;
 }
 #searchButton {
+    border-radius: 5px;
     border: 1px;
     outline: none;
     padding: 6px;
-    height: 35px;
-    width: 35px;
-    font-size: 16px;
+    height: 37px;
+    width: 37px;
+    font-size: 17px;
     background-color: white;
     color: rgb(45, 45, 45);
     text-align: center;
