@@ -20,77 +20,21 @@ searchButton.addEventListener("click", function (event) {
 
 // Begin search
 function search() {
-    sessionStorage.setItem('searchPhrase', filterSearchResult(searchBar.value));
+    sessionStorage.setItem('searchPhrase', filterSearchResult(buildSearchPhraseResult(searchBar.value)));
     sessionStorage.setItem('searchPhraseList', JSON.stringify(buildSearchPhraseResult(searchBar.value)))
     window.location.href = "./search_result.html";
 }
 
 // Formats the search input for result use
 function filterSearchResult(x) {
-    stringLength = x.length
-
-    // Needed for past search result
-    var clean = ''
-
-    // Deletes the first hashtag
-    if (x[0] == '#') {
-        x = x.substr(1);
+    clean = ""
+    for (i=0; i<x.length; i++){
+        clean = clean + '#' + x[i] + ' ';
     }
-    else {
-        x
-    }
-
-    // Splits the #
-    while (x.includes('#')) {
-        x = x.split('#', stringLength);
-
-    }
-
-    // Splits the ,
-    while (x.includes(',')) {
-        x = x.split(',', stringLength);
-    }
-
-    // Gets rid of spaces and commas in the string
-    for (i = 0; i <x.length; i++){
-        x[i] = x[i].replace(",", "")
-        x[i] = x[i].trim();
-        x[i] = "#" + x[i];
-    }
-
-    // Adds the items into a string
-    for (i = 0; i <x.length; i++){
-        clean = clean + x[i] + ' '
-    }
-    return clean
+    return clean;
 }
 
-// Filters the # and , in search bar
-function filterSearch(x) {
-    stringLength = x.length
 
-    // Deletes the first hashtag
-    if (x[0] == '#') {
-        x = x.substr(1);
-    }
-
-    // Splits the #
-    while (x.includes('#')) {
-        x = x.split('#', stringLength);
-    }
-
-    // Splits the ,
-    while (x.includes(',')) {
-        x = x.split(',', stringLength);
-    }
-
-    // Gets rid of spaces and commas in the string
-    for (i = 0; i <x.length; i++){
-        x[i] = x[i].replace(",", "")
-        x[i] = x[i].trim();
-    }
-    return x;
-}
 
 function buildSearchPhraseResult(searchPhrase) {
     searchPhraseList = [];
