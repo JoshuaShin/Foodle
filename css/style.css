@@ -12,6 +12,7 @@ h1 {
     font-size: 48px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: white;
+    outline: none;
 }
 #foodleLogo {
     text-decoration: none;
@@ -40,7 +41,8 @@ h1 {
     height: 25px;
     font-size: 17px;
 }
-#searchButton {
+#searchButton,
+#addRecipeButton {
     border-radius: 5px;
     border: 1px;
     outline: none;

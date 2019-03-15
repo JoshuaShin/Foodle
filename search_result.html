@@ -28,6 +28,12 @@
         <br/>
 
         <div id = "resultHolder">
+            <div class = "recipeResult">
+                <a href = "./create_recipe.html">
+                    <h2 style = "color: whitesmoke;">Add Recipe</h2>    
+                </a>
+            </div>
+            </br>
         </div> 
     </div>
 
@@ -70,7 +76,7 @@
         }
 
         function displayRecipeResultElement(recipeData) {
-            document.getElementById("resultHolder").innerHTML += 
+            document.getElementById("resultHolder").innerHTML = 
             `
             <div class = "recipeResult">
                 <a href = "https://www.google.ca/">
@@ -79,7 +85,7 @@
                 </a>
             </div>
             <br/>
-            `
+            ` + document.getElementById("resultHolder").innerHTML;
         }
 
         function buildIngredientsList(recipeData) {
