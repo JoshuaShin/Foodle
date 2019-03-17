@@ -44,6 +44,8 @@
         <div id = "createRecipeHolder">
             <p>Title</p>
             <textarea id = "title" rows = "1" cols = "140"></textarea>
+            <p>Cook Time</p>
+            <textarea id = "cooktime" rows = "1" cols = "140"></textarea>
             <p>Description</p>
             <textarea id = "description" rows = "6" cols = "140"></textarea>
             <p>Ingredients</p>
@@ -65,6 +67,7 @@
 
         function writeRecipe() {
             let title = document.getElementById("title").value;
+            let cooktime = document.getElementById("cooktime").value;
             let description = document.getElementById("description").value;
             let ingredients = buildSearchPhraseResult(document.getElementById("ingredients").value);
             let steps = document.getElementById("steps").value;
@@ -74,6 +77,7 @@
             } else {
                 let dbref = firebase.database().ref("recipes/" + title).set({
                     "name": title,
+                    "cooktime": cooktime,
                     "description": description,
                     "ingredients": ingredients,
                     "steps": steps,
