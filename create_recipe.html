@@ -73,6 +73,7 @@
                 window.alert("Empty field!");
             } else {
                 let dbref = firebase.database().ref("recipes/" + title).set({
+                    "name": title,
                     "description": description,
                     "ingredients": ingredients,
                     "steps": steps,
