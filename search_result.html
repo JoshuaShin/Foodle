@@ -4,10 +4,7 @@
     <link rel = "stylesheet" type = "text/css" href = "css/style.css">
 
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
-<<<<<<< HEAD
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-=======
->>>>>>> 5d7866b75c3edcd9a2df5d2ffdb300304133a8d0
     <script>
         // Initialize Firebase
         var config = {
@@ -54,34 +51,22 @@
         </div>
         <br/>
         <div id = "resultHolder">
-<<<<<<< HEAD
             <div class = "displayresult">
             </div>
-=======
->>>>>>> 5d7866b75c3edcd9a2df5d2ffdb300304133a8d0
             <div class = "recipeResult">
                 <a href = "./create_recipe.html">
                     <h2 style = "color: whitesmoke;">Add Recipe</h2>    
                 </a>
             </div>
             </br>
-<<<<<<< HEAD
         </div>
-=======
-        </div> 
->>>>>>> 5d7866b75c3edcd9a2df5d2ffdb300304133a8d0
     </div>
 
 
     <script src="js/search.js"></script>
-<<<<<<< HEAD
     <script>    
 
 
-=======
-    <script>
-        
->>>>>>> 5d7866b75c3edcd9a2df5d2ffdb300304133a8d0
         // ===== GLOBALS ===== //
         let recipeDatabase = {};
         let searchPharseList = [];
@@ -134,7 +119,6 @@
                     <p style = "color: whitesmoke;"> Ingredients: ` + buildIngredientsList(recipeDictionary) + ` </p>
                 </a>
             </div>
-<<<<<<< HEAD
             ` + document.getElementById("resultHolder").innerHTML;
         }
 
@@ -163,17 +147,7 @@
                     return 1;
                 }
                 }).appendTo('.displayresult');
-=======
-            <br/>
-            ` + document.getElementById("resultHolder").innerHTML;
         }
-
-
-        function buildIngredientsList(recipeDictionary) {
-            return recipeDictionary['ingredients'].join(', ');
->>>>>>> 5d7866b75c3edcd9a2df5d2ffdb300304133a8d0
-        }
-        // ===== FUNCTIONS ===== //
 
         // ===== FUNCTIONS ===== //
 
