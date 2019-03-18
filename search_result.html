@@ -2,6 +2,22 @@
 <html>
 <head>
     <link rel = "stylesheet" type = "text/css" href = "css/style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBrGlVFqo2ixWMzeeq6ppt4jaMErC8H5LY",
+            authDomain: "foodle-d4b88.firebaseapp.com",
+            databaseURL: "https://foodle-d4b88.firebaseio.com",
+            projectId: "foodle-d4b88",
+            storageBucket: "foodle-d4b88.appspot.com",
+            messagingSenderId: "506441498159"
+        };
+        firebase.initializeApp(config);
+    </script>
+
     <style>
         .recipeResult {
             border-radius: 1px;
@@ -24,67 +40,118 @@
             <input id = "searchBar" type = "text" placeholder = "#Carrots #Peas #Potatoes #Lunch #Vegan">
             <button id = "searchButton">Q</button>
         </div>
-        
+        <div class="dropdown" style="float:right; position: absolute; left: 73.6%">
+            <button class="dropbtn">sort</button>
+            <div class="dropdown-content" style="right:0;">
+                <a onclick="alphabetical()">alphabetical</a>
+                <a onclick="alphabetical()">user rating</a>
+                <a onclick="alphabetical()">cook time</a>
+                <a onclick="alphabetical()">last updated</a>
+            </div>
+        </div>
         <br/>
-
         <div id = "resultHolder">
-        </div> 
+            <div class = "displayresult">
+            </div>
+            <div class = "recipeResult">
+                <a href = "./create_recipe.html">
+                    <h2 style = "color: whitesmoke;">Add Recipe</h2>    
+                </a>
+            </div>
+            </br>
+        </div>
     </div>
 
+
     <script src="js/search.js"></script>
-    <script>
-        
-        // Mock database
-        let recipeData = new Array();
-        recipeData[0] = ["ChickenCurry", ["chicken", "onion", "curry", "pepper", "carrot"]];
-        recipeData[1] = ["HotChickenpot", ["chicken", "onion", "pepper", "greenonion", "carrot", "rice"]];
-        recipeData[2] = ["Bulgogi", ["beef", "onion", "greenonion", "carrot", "soysauce"]];
-        recipeData[3] = ["Salmonpoke", ["salmon", "avocado", "rice", "cucumber", "lectuce"]];
-        recipeData[4] = ["Soya", ["ham", "sausage", "onion", "pepper", "Ketchup"]];
-        recipeData[5] = ["Donkatsu", ["pork", "cabbage", "onion", "corn"]];
-        recipeData[6] = ["Kimbab", ["ham", "sausage", "spinich", "cucumber", "carrot", "rice"]];
-        recipeData[7] = ["Tuna Sandwich", ["tuna", "bread", "lectuce", "cheese", "mayonaise"]];
-        recipeData[8] = ["Pizza", ["olive", "cheese", "ham", "mushroom", "pepper", "tomato", "tamatosauce"]];
-        // recipeData[0] = ["a", ["a"]];
-        // recipeData[1] = ["ab", ["a", "b"]];
-        // recipeData[2] = ["abc", ["a", "b", "c"]];
-        // recipeData[3] = ["abcd", ["a", "b", "c", "d"]];
+    <script>    
 
-        console.log("searchPhrase: ", sessionStorage.getItem("searchPhrase"));
-        console.log("searchPhraseList: ", JSON.parse(sessionStorage.getItem("searchPhraseList")));
 
+        // ===== GLOBALS ===== //
+        let recipeDatabase = {};
+        let searchPharseList = [];
+        // ===== GLOBALS ===== //
+
+
+        // ===== ASYNCHRONOUS TASKS: DATABASE RETRIEVAL & DISPLAY SEARCH RESULT ===== //
+        var dbref = firebase.database().ref().child("recipes");
+        dbref.on(
+            "value",
+            function(snap) {
+                recipeDatabase = snap.val();
+                matchResultToDatabase();
+            });
+        // ===== ASYNCHRONOUS TASKS: DATABASE RETRIEVAL & DISPLAY SEARCH RESULT ===== //
+
+
+        // ===== SYNCHRONOUS TASKS ===== //
+        searchPharseList = JSON.parse(sessionStorage.getItem("searchPhraseList")); //["chicken", "onion", "pepper", "rice"];
         document.getElementById('searchBar').value = sessionStorage.getItem("searchPhrase");
-        let searchPharseList = JSON.parse(sessionStorage.getItem("searchPhraseList")); //["chicken", "onion", "pepper", "rice"];
 
         Array.prototype.diff = function(arr) {
             return this.filter( function(val) {
                 return arr.indexOf(val) < 0;
             });
         };
+        // ===== SYNCHRONOUS TASKS ===== //
 
-        for (i = 0 ; i < recipeData.length; i++) {
-            let result = searchPharseList.diff(recipeData[i][1]);
-            if (result.length <= 0) {
-                displayRecipeResultElement(recipeData[i])
+
+        // ===== FUNCTIONS ===== //
+        function matchResultToDatabase() {
+            for(let recipe in recipeDatabase) {
+                let ingredients = recipeDatabase[recipe]['ingredients'];
+                
+                let result = searchPharseList.diff(ingredients);
+                if (result.length <= 0) {
+                    displayRecipeResultElement(recipeDatabase[recipe]);
+                }
             }
         }
 
-        function displayRecipeResultElement(recipeData) {
-            document.getElementById("resultHolder").innerHTML += 
+
+        function displayRecipeResultElement(recipeDictionary) {
+            document.getElementById("resultHolder").innerHTML = 
             `
             <div class = "recipeResult">
                 <a href = "https://www.google.ca/">
-                    <h2 style = "color: whitesmoke;"> ` + recipeData[0] + ` </h2>    
-                    <p style = "color: whitesmoke;"> ` + buildIngredientsList(recipeData) + ` </p>
+                    <h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + ` </h2>    
+                    <p style = "color: whitesmoke;"> Description: ` + recipeDictionary['description'] + ` </p>
+                    <p style = "color: whitesmoke;"> Ingredients: ` + buildIngredientsList(recipeDictionary) + ` </p>
                 </a>
             </div>
-            <br/>
-            `
+            ` + document.getElementById("resultHolder").innerHTML;
         }
 
-        function buildIngredientsList(recipeData) {
-            return recipeData[1].toString();
+
+        function buildIngredientsList(recipeDictionary) {
+            return recipeDictionary['ingredients'].join(', ');
         }
+
+        function sortThem(s) {
+            Array.prototype.slice.call(document.body.querySelectorAll(s)).sort(function sort (ea, eb) {
+                var a = ea.textContent.trim();
+                var b = eb.textContent.trim();
+                if (a.textContent < b.textContent) return -1;
+                if (a.textContent > b.textContent) return 1;
+                return 0;
+            }).forEach(function(div) {
+                div.parentElement.appendChild(div);
+            });
+        }
+
+        function alphabetical() {
+            $('.recipeResult').sort(function(a, b) {
+                if (a.textContent < b.textContent) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+                }).appendTo('.displayresult');
+        }
+
+        // ===== FUNCTIONS ===== //
+
+
 
     </script>
 </body>
