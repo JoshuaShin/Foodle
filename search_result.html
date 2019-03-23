@@ -44,13 +44,13 @@
             <button class="dropbtn">sort</button>
             <div class="dropdown-content" style="right:0;">
                 <a onclick="alphabetical()">alphabetical</a>
-                <a onclick="alphabetical()">user rating</a>
-                <a onclick="alphabetical()">cook time</a>
+                <a onclick="userrating()">user rating</a>
+                <a onclick="cooktime()">cook time</a>
                 <a onclick="alphabetical()">last updated</a>
             </div>
         </div>
         <br/>
-        <div id = "resultHolder">
+        <div id = "resultHolder" class = "resultHolder">
             <div class = "displayresult">
             </div>
             <div class = "recipeResult">
@@ -112,11 +112,14 @@
         function displayRecipeResultElement(recipeDictionary) {
             document.getElementById("resultHolder").innerHTML = 
             `
-            <div class = "recipeResult">
+            <div class = "recipeResult" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
                 <a href = "https://www.google.ca/">
-                    <h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + ` </h2>    
-                    <p style = "color: whitesmoke;"> Description: ` + recipeDictionary['description'] + ` </p>
-                    <p style = "color: whitesmoke;"> Ingredients: ` + buildIngredientsList(recipeDictionary) + ` </p>
+                    <div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
+                    `<span class = "timeandrating"> cooktime:  ` + recipeDictionary['cooktime'] + `  rating: </span>
+                    <span class = "star">` + recipeDictionary['star'] + ` </span></h2></div>
+                    <div><p style = "color: whitesmoke;"> Description: ` + recipeDictionary['description'] + ` </p></div>
+                    <div><p style = "color: whitesmoke;"> Ingredients: ` + buildIngredientsList(recipeDictionary) + ` </p></div>
+                    <div><img img src="`+ recipeDictionary['image'] +`"   height="100" width="100"></div>
                 </a>
             </div>
             ` + document.getElementById("resultHolder").innerHTML;
@@ -125,18 +128,6 @@
 
         function buildIngredientsList(recipeDictionary) {
             return recipeDictionary['ingredients'].join(', ');
-        }
-
-        function sortThem(s) {
-            Array.prototype.slice.call(document.body.querySelectorAll(s)).sort(function sort (ea, eb) {
-                var a = ea.textContent.trim();
-                var b = eb.textContent.trim();
-                if (a.textContent < b.textContent) return -1;
-                if (a.textContent > b.textContent) return 1;
-                return 0;
-            }).forEach(function(div) {
-                div.parentElement.appendChild(div);
-            });
         }
 
         function alphabetical() {
@@ -148,6 +139,27 @@
                 }
                 }).appendTo('.displayresult');
         }
+
+        function cooktime() {
+            $('.recipeResult').sort(function(a, b) {
+                if ($(a).data('cooktime') < $(b).data('cooktime')) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+                }).appendTo('.displayresult');
+        }
+
+        function userrating() {
+            $('.recipeResult').sort(function(a, b) {
+                if ($(a).data('rating') > $(b).data('rating')) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+                }).appendTo('.displayresult');
+        }
+
 
         // ===== FUNCTIONS ===== //
 
