@@ -115,11 +115,10 @@
             <div class = "recipeResult" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
                 <a href = "https://www.google.ca/">
                     <div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
-                    `<span class = "timeandrating"> cooktime:  ` + recipeDictionary['cooktime'] + `  rating: </span>
-                    <span class = "star">` + recipeDictionary['star'] + ` </span></h2></div>
-                    <div><p style = "color: whitesmoke;"> Description: ` + recipeDictionary['description'] + ` </p></div>
+                    `<span class = "timeandrating"> cooktime:  ` + recipeDictionary['cooktime'] + `  rating: 
+                    <span class = "star">` + recipeDictionary['star'] + ` </span></span></h2></div>
+                    <div><p style = "color: whitesmoke;"> Description: ` + recipeDictionary['description'] + ` <img src="`+ recipeDictionary['image'] +`" height="120" width="400"> </p></div>
                     <div><p style = "color: whitesmoke;"> Ingredients: ` + buildIngredientsList(recipeDictionary) + ` </p></div>
-                    <div><img img src="`+ recipeDictionary['image'] +`"   height="100" width="100"></div>
                 </a>
             </div>
             ` + document.getElementById("resultHolder").innerHTML;

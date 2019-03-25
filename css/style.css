@@ -119,16 +119,24 @@ h1 {
 }
 
 .timeandrating {
+    float: right;
     font-size: 16px;
-    position: relative;
-    margin-left: 300px;
+    margin-right: 20px;
 }
 
 .star {
-    font-size: 16px;
     color: gold;
 }
-
+.recipeResult::after {
+    content: "";
+    clear: both;
+    display: table;
+    margin-bottom: 15px;
+    margin-right: 15px;
+}
+img {
+    float: right;
+}  
 .dropdown-content a:hover {background-color: rgba(0, 0, 0, 0.6);}
 .dropdown:hover .dropdown-content {display: block;}
 .dropdown:hover .dropbtn {background-color: rgba(45, 45, 45, 0.60);}
