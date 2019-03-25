@@ -85,7 +85,10 @@
                     "updated": new Date(),
                 });
 
-                window.alert("Recipe added!");
+                dbref.then(function() {
+                    window.location.href = "./search_result.html";
+                });    
+                            
             }
 
             function buildSearchPhraseResult(searchPhrase) {
