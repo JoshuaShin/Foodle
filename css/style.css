@@ -83,6 +83,13 @@ h1 {
 .recipeResult {
     margin-top:25px;
 }
+.AddRecipe {
+    margin-top:25px;
+    border-radius: 1px;
+    background-color: rgba(45, 45, 45, 0.60);
+    padding: 1px;
+    padding-left: 20px;
+}
 .dropbtn {
     background-color: rgba(45, 45, 45, 0.60);
     color: white;
@@ -92,12 +99,19 @@ h1 {
     border: none;
     cursor: pointer;
 }
-
+.GetthisRecipe {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: none;
+    cursor: pointer;
+}
 .dropdown {
     position: relative;
     display: inline-block;
 }
-
 .dropdown-content {
     display: none;
     position: absolute;
@@ -157,8 +171,17 @@ h1 {
 }
 
 img {
-    float: right;
-}  
+    float: left;
+    max-width: 100%;
+    height: auto;
+}
+.image-wrapper {
+    float: left;
+    width : 33%;
+    height : 200px;
+    overflow: hidden;
+    margin-right: 30px;
+}
 .dropdown-content a:hover {background-color: rgba(0, 0, 0, 0.6);}
 .dropdown:hover .dropdown-content {display: block;}
 .dropdown:hover .dropbtn {background-color: rgba(45, 45, 45, 0.60);}

@@ -56,6 +56,8 @@
             <div class = "displayresult">
             </div>
             <div class = "recipeResult">
+            </div>
+            <div class = "AddRecipe">
                 <a href = "./create_recipe.html">
                     <h2 style = "color: whitesmoke;">Add Recipe</h2>    
                 </a>
@@ -121,11 +123,11 @@
             `
             <div onmouseover="yeeT()" onmouseout="yotE()" class = "recipeResult" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
                 <a href = "https://www.google.ca/">
-                    <div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
+                    <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="100" width="350"></div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
                     `<span class = "timeandrating"> cooktime:  ` + recipeDictionary['cooktime'] + `  rating: 
                     <span class = "star">` + recipeDictionary['star'] + ` </span></span></h2></div>
-                    <div><p style = "color: whitesmoke;"> Description: ` + recipeDictionary['description'] + ` <img src="`+ recipeDictionary['image'] +`" height="120" width="400"> </p></div>
-                    <div><p style = "color: whitesmoke;"> Ingredients: ` + buildIngredientsList(recipeDictionary) + ` </p></div>
+                    <div><p style = "color: whitesmoke;"> Description: ` + recipeDictionary['description'] + ` </p></div>
+                    <div><p style = "color: whitesmoke;"> Ingredients: ` + buildIngredientsList(recipeDictionary) + `</p></div>
                 </a>
             </div>
             ` + document.getElementById("resultHolder").innerHTML;
