@@ -69,7 +69,7 @@
             </div>
             </br>
         </div>
-        <div id = 'seperation'></div>
+        <div id = 'seperation' class = 'seperation'></div>
         </div>
     </div>
         </div>
@@ -124,13 +124,17 @@
 
         function displayRecipeResultElement(recipeDictionary) {
             document.getElementById("seperation").innerHTML = 
-            `<div>
+            `
             <br>
-            <div>` + recipeDictionary['name'] + ` </div>    
-            <div> <img src="` + recipeDictionary['image'] +`" alt="images/default.jpg"></div>
-            <div>` + recipeDictionary['description'] + `</div>
+            <br>
+            <div class = "okay">
+            <div><p style = "color: whitesmoke;">` + recipeDictionary['name'] + `</p></div>\
+            <br>   
+            <div><p style = "color: whitesmoke;">` + recipeDictionary['description'] + `</p></div>
+            <br>
+            <div><p style = "color: whitesmoke;">` + recipeDictionary['cooktime'] + `</p></div>
             </div>`
-            
+
             document.getElementById("resultHolder").innerHTML = 
             `
             <div onmouseover="yeeT()" onmouseout="yotE()" class = "recipeResult" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
