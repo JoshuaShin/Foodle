@@ -41,11 +41,6 @@
             <button id = "searchButton">Q</button>
             
         </div>
-        
-        <div class="slidecontainer">
-                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                <p id="value" style="color: white">0</p>
-        </div>
 
         <div class="dropdown" style="float:right; position: absolute; left: 73.6%">
             <button class="dropbtn">sort</button>
@@ -127,18 +122,15 @@
             }
         }
 
-        // Counts the slider info
-        var slider = document.getElementById("myRange");
-        var output = document.getElementById("value");
-        output.innerHTML = slider.value; 
-
-        
-        slider.oninput = function() {
-            output.innerHTML = this.value;
-
-        }
-
         function displayRecipeResultElement(recipeDictionary) {
+            document.getElementById("seperation").innerHTML = 
+            `<div>
+            <br>
+            <div>` + recipeDictionary['name'] + ` </div>    
+            <div> <img src="` + recipeDictionary['image'] +`" alt="images/default.jpg"></div>
+            <div>` + recipeDictionary['description'] + `</div>
+            </div>`
+            
             document.getElementById("resultHolder").innerHTML = 
             `
             <div onmouseover="yeeT()" onmouseout="yotE()" class = "recipeResult" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
@@ -154,14 +146,11 @@
         }
 
         function yeeT(){
-            document.getElementById('seperation').innerHTML = `
-            <h1>YESRERFEJFDLSKFJLKDJFDKLSJFLFLFLFLDSFKLDJFKDSKF</h1>
-            `
+            document.getElementById('seperation').style.display = 'block';
         }
 
         function yotE(){
-            document.getElementById('seperation').innerHTML = `
-            <div></div>`
+            document.getElementById('seperation').style.display = 'none';
         }
 
         function buildIngredientsList(recipeDictionary) {

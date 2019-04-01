@@ -169,10 +169,14 @@ img {
     height: auto;
 }
 
+#seperation{
+    position: fixed;
+    right: 17%;
+}
 
 .image-wrapper {
     float: left;
-    width : 1000px;
+    width : 800px;
     height : 200px;
     overflow: hidden;
     margin-right: 30px;
