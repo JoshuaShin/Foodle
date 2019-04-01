@@ -28,9 +28,9 @@
         a {
             text-decoration: none;
         }
-        #resultHolder {
-            padding-left: 23.75%; padding-right: 23.75%;
-        }
+        /* #resultHolder {
+           padding-left: 23.75%; padding-right: 23.75%;
+        } */
     </style>
 </head>
 <body>
@@ -50,6 +50,8 @@
             </div>
         </div>
         <br/>
+
+        <div class = 'container'>
         <div id = "resultHolder" class = "resultHolder">
             <div class = "displayresult">
             </div>
@@ -60,6 +62,11 @@
             </div>
             </br>
         </div>
+        <div class='right' id = 'seperation'>
+        </div>
+    </div>
+        </div>
+        
     </div>
 
 
@@ -112,7 +119,7 @@
         function displayRecipeResultElement(recipeDictionary) {
             document.getElementById("resultHolder").innerHTML = 
             `
-            <div class = "recipeResult" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
+            <div onmouseover="yeeT()" onmouseout="yotE()" class = "recipeResult" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
                 <a href = "https://www.google.ca/">
                     <div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
                     `<span class = "timeandrating"> cooktime:  ` + recipeDictionary['cooktime'] + `  rating: 
@@ -124,6 +131,16 @@
             ` + document.getElementById("resultHolder").innerHTML;
         }
 
+        function yeeT(){
+            document.getElementById('seperation').innerHTML = `
+            <h1>Yeet</h1>
+            <h2>Wheat</h2>`
+        }
+
+        function yotE(){
+            document.getElementById('seperation').innerHTML = `
+            <div></div>`
+        }
 
         function buildIngredientsList(recipeDictionary) {
             return recipeDictionary['ingredients'].join(', ');
