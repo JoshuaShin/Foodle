@@ -141,6 +141,13 @@ h1 {
 .star {
     color: gold;
 }
+
+
+.container{
+    display:flex;
+    margin:0; 
+}
+
 .recipeResult::after {
     content: "";
     clear: both;
@@ -149,25 +156,11 @@ h1 {
     margin-right: 15px;
 }
 
-.container{
-    display:flex;
-    margin:0; 
-}
-
 #recipeResult{
     flex: 0 0 65;
     overflow: hidden;
     float: left;
-    width: 75%;
-}
-
-.right{
-    flex: 1;
-    color: white;
-    overflow: hidden;
-    float: left;
-    width: 25%;
-
+    width: 100%;
 }
 
 img {
@@ -175,9 +168,11 @@ img {
     max-width: 100%;
     height: auto;
 }
+
+
 .image-wrapper {
     float: left;
-    width : 33%;
+    width : 1000px;
     height : 200px;
     overflow: hidden;
     margin-right: 30px;

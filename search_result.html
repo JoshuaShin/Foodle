@@ -39,7 +39,14 @@
             <a id = "foodleLogo" class = "unselectable" href = "./index.html"><h1>FOODLE</h1></a>
             <input id = "searchBar" type = "text" placeholder = "#Carrots #Peas #Potatoes #Lunch #Vegan">
             <button id = "searchButton">Q</button>
+            
         </div>
+        
+        <div class="slidecontainer">
+                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                <p id="value" style="color: white">0</p>
+        </div>
+
         <div class="dropdown" style="float:right; position: absolute; left: 73.6%">
             <button class="dropbtn">sort</button>
             <div class="dropdown-content" style="right:0;">
@@ -49,6 +56,9 @@
                 <a onclick="alphabetical()">last updated</a>
             </div>
         </div>
+
+        
+
         <br/>
 
         <div class = 'container'>
@@ -64,7 +74,7 @@
             </div>
             </br>
         </div>
-        <div class='right' id = 'seperation'>
+        <div id = 'seperation'></div>
         </div>
     </div>
         </div>
@@ -117,13 +127,23 @@
             }
         }
 
+        // Counts the slider info
+        var slider = document.getElementById("myRange");
+        var output = document.getElementById("value");
+        output.innerHTML = slider.value; 
+
+        
+        slider.oninput = function() {
+            output.innerHTML = this.value;
+
+        }
 
         function displayRecipeResultElement(recipeDictionary) {
             document.getElementById("resultHolder").innerHTML = 
             `
             <div onmouseover="yeeT()" onmouseout="yotE()" class = "recipeResult" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
                 <a href = "https://www.google.ca/">
-                    <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="100" width="350"></div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
+                    <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="100" width="500"></div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
                     `<span class = "timeandrating"> cooktime:  ` + recipeDictionary['cooktime'] + `  rating: 
                     <span class = "star">` + recipeDictionary['star'] + ` </span></span></h2></div>
                     <div><p style = "color: whitesmoke;"> Description: ` + recipeDictionary['description'] + ` </p></div>
@@ -135,8 +155,8 @@
 
         function yeeT(){
             document.getElementById('seperation').innerHTML = `
-            <h1>Yeet</h1>
-            <h2>Wheat</h2>`
+            <h1>YESRERFEJFDLSKFJLKDJFDKLSJFLFLFLFLDSFKLDJFKDSKF</h1>
+            `
         }
 
         function yotE(){
