@@ -14,6 +14,10 @@ h1 {
     color: white;
     outline: none;
 }
+
+#loginButton{
+    right: 15%;
+}
 #foodleLogo {
     text-decoration: none;
 }
