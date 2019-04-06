@@ -39,20 +39,15 @@
 
         #bottomStuff{
             position: absolute;
-            margin-left: 30%;
+            margin-left: 58%;
             bottom: 0;
-            
+            padding: 10px;
         }
 
         .item{
-            display:block;
-            float:left;
-            margin-left:25px;
-            position:relative;
-            min-height:35px;
-            max-width:125px;
-            padding-bottom:10px;
-            text-align:center;
+            height: 50px;
+            width: 50px;
+            color: white;
         }
         /* #resultHolder {
            padding-left: 23.75%; padding-right: 23.75%;
@@ -195,10 +190,10 @@
             <span class = "star">` + recipeDictionary['star'] + `</span>
             <br>
             <div id = "bottomStuff">
-                <button class = "item">Share</button>
-                <button class = "item">Print</button>
+                <img src="images/download.png" class = "item">
+                <img src="images/printer.png" class = "item">
                 <a href="profile.html">
-                    <button class = "item">I Made This</button>
+                    <img src="images/save.png" class = "item">
                 </a>
             </div>`
             document.getElementById("resultHolder").innerHTML = 
