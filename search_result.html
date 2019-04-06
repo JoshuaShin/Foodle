@@ -72,6 +72,7 @@
             <div class="ingredient-content" style="left:0;">
                 <table class="buttontable">
                     <tr class="tablecontents"><div id = "tr1"></div></tr>
+                    <th><button onclick="myFunction()">Sigh...</button><th>
                 </table>
             </div>
         </div>
@@ -140,18 +141,30 @@
             for(let i = 0; i < searchPharseList.length; i++) {
                 if(meatandfish.includes(searchPharseList[i])) {
                     var para = document.createElement("th");
-                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" min="0" max="10" value="5" class="slider" id="ingredient1">` + '</br></br>gram : ';
+                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" min="0" max="1000" value="500" class="slider" id="ingredient` + i +`">
+                    </br></br>gram : <span id="demo`+ i +`"></span>g`;
                     document.getElementById("tr1").appendChild(para);
                 }else{
                     var para = document.createElement("th");
-                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" min="0" max="10" value="5" class="slider" id="ingredient1">` + '</br></br>EA : ';
+                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" min="0" max="10" value="5" class="slider" id="ingredient` + i +`">
+                    </br></br>EA : <span id="demo`+ i +`"></span>`;
                     document.getElementById("tr1").appendChild(para); 
                 }
             }
         }
-        // ===== KANGMIN WORKING ON HERE ===== //
 
         maketr1()
+    
+        function myFunction() {
+            for(let i = 0; i < searchPharseList.length; i++) {
+                var x = document.getElementById("ingredient" + i).value;
+                document.getElementById("demo" + i).innerHTML = x;
+            }
+        }
+
+        // ===== KANGMIN WORKING ON HERE ===== //
+
+        
         // ===== FUNCTIONS ===== //
         function matchResultToDatabase() {
             for(let recipe in recipeDatabase) {
