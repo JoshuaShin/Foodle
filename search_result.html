@@ -22,12 +22,24 @@
         .recipeResult {
             border-radius: 1px;
             background-color: rgba(45, 45, 45, 0.60);
-            padding: 1px;
+            padding: 20px;
             padding-left: 20px;
+            border-color: rgba(45, 45, 45, 0.60);
         }
         a {
             text-decoration: none;
         }
+
+        .dropbtn{
+            text-align: left;
+        }
+
+        #resultHolder{
+            padding:20px;
+            width:800px;
+        }
+
+        
         /* #resultHolder {
            padding-left: 23.75%; padding-right: 23.75%;
         } */
@@ -35,14 +47,14 @@
 </head>
 <body>
     <div>
-        <div id = "searchTop">
+        <div id = "searchTop2">
             <a id = "foodleLogo" class = "unselectable" href = "./index.html"><h1>FOODLE</h1></a>
             <input id = "searchBar" type = "text" placeholder = "#Carrots #Peas #Potatoes #Lunch #Vegan">
             <button id = "searchButton">Q</button>
             
         </div>
 
-        <div class="dropdown" style="float:right; position: absolute; left: 73.6%">
+        <div class="dropdown" style="float:right; position: absolute; right: 45%; top: 24%">
             <button class="dropbtn">sort</button>
             <div class="dropdown-content" style="right:0;">
                 <a onclick="alphabetical()">alphabetical</a>
@@ -125,8 +137,6 @@
         function displayRecipeResultElement(recipeDictionary) {
             document.getElementById("seperation").innerHTML = 
             `
-            <br>
-            <br>
             <div class = "okay">
             <div><p style = "color: whitesmoke;">` + recipeDictionary['name'] + `</p></div>\
             <br>   
@@ -139,7 +149,7 @@
 
             document.getElementById("resultHolder").innerHTML = 
             `
-            <div onmouseover="yeeT()" onmouseout="yotE()" class = "recipeResult" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
+            <div onclick="openup()" class = "recipeResult" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
                 <a href = "https://www.google.ca/">
                     <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="100" width="500"></div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
                     `<span class = "timeandrating"> cooktime:  ` + recipeDictionary['cooktime'] + `  rating: 
@@ -149,13 +159,17 @@
                 </a>
             </div>
             ` + document.getElementById("resultHolder").innerHTML;
+            hide()
         }
 
-        function yeeT(){
+        function hide(){
+            document.getElementById('seperation').style.display = 'none';
+        }
+        function openup(){
             document.getElementById('seperation').style.display = 'block';
         }
 
-        function yotE(){
+        function closedown(){
             document.getElementById('seperation').style.display = 'none';
         }
 
