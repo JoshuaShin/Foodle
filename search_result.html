@@ -175,9 +175,39 @@
                     displayRecipeResultElement(recipeDatabase[recipe]);
                 }
             }
+            assignRecipeOnClick();
         }
 
         function displayRecipeResultElement(recipeDictionary) {
+
+            document.getElementById("resultHolder").innerHTML = 
+            `
+            <div  class = "recipeResult" id = "` + recipeDictionary['name'] + `" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
+                <a href = "https://www.google.ca/">
+                    <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="100" width="300"></div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
+                    `<span class = "timeandrating"><span class = "star">` + recipeDictionary['star'] + ` </span></span></h2></div>
+                    <div><p style = "color: whitesmoke;"> Description: ` + recipeDictionary['description'] + ` </p></div>
+                    <p style = "color: whitesmoke;">cooktime:  ` + recipeDictionary['cooktime'] + `</p>
+                    <div><p style = "color: whitesmoke;"> Ingredients: ` + buildIngredientsList(recipeDictionary) + `</p></div>
+                </a>
+            </div>
+            ` + document.getElementById("resultHolder").innerHTML;
+            hide();
+        }
+        function assignRecipeOnClick() {
+            let resultHolderChildren = document.getElementById("resultHolder").children;
+            for (let i = 0; i < resultHolderChildren.length; i++) {
+                if (resultHolderChildren[i].id) {
+                    resultHolderChildren[i].onclick = function() {
+                        openup(recipeDatabase[resultHolderChildren[i].id]);
+                    };
+                }
+            }
+        }
+        function hide(){
+            document.getElementById('seperation').style.display = 'none';
+        }
+        function openup(recipeDictionary){
             document.getElementById("seperation").innerHTML = 
             `
             <div class = "okay">
@@ -195,25 +225,8 @@
                 <a href="profile.html">
                     <img src="images/save.png" class = "item">
                 </a>
-            </div>`
-            document.getElementById("resultHolder").innerHTML = 
-            `
-            <div onclick="openup()" class = "recipeResult" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
-                <a href = "https://www.google.ca/">
-                    <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="100" width="300"></div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
-                    `<span class = "timeandrating"><span class = "star">` + recipeDictionary['star'] + ` </span></span></h2></div>
-                    <div><p style = "color: whitesmoke;"> Description: ` + recipeDictionary['description'] + ` </p></div>
-                    <p style = "color: whitesmoke;">cooktime:  ` + recipeDictionary['cooktime'] + `</p>
-                    <div><p style = "color: whitesmoke;"> Ingredients: ` + buildIngredientsList(recipeDictionary) + `</p></div>
-                </a>
-            </div>
-            ` + document.getElementById("resultHolder").innerHTML;
-            hide()
-        }
-        function hide(){
-            document.getElementById('seperation').style.display = 'none';
-        }
-        function openup(){
+            </div>`;
+
             document.getElementById('seperation').style.display = 'block';
         }
         function closedown(){
