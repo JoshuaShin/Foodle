@@ -29,11 +29,9 @@
         a {
             text-decoration: none;
         }
-
         .dropbtn{
             text-align: left;
         }
-
         #resultHolder{
             padding:20px;
             width:800px;
@@ -58,34 +56,8 @@
             <button id = "searchButton">Q</button>
             
         </div>
-<<<<<<< HEAD
-        <div class="ingredientdown" style="float:left; position: absolute; left: 23.95%">
-            <button class="ingredientbtn">ingredients</button>
-            <div class="ingredient-content" style="left:0;">
-                <table class="buttontable">
-                    <tr class="tablecontents">
-                        <th><p id="ingredient1">ingredient</p></th>
-                        <th><p id="ingredient2">ingredient</p></th>
-                        <th><p id="ingredient3">ingredient</p></th>
-                    </tr>
-                    <tr>
-                        <th><input type="range" min="0" max="10" value="5" class="slider" id="ingredient1"></th>
-                        <th><input type="range" min="0" max="10" value="5" class="slider" id="ingredient2"></th>
-                        <th><input type="range" min="0" max="10" value="5" class="slider" id="ingredient3"></th>
-                    </tr>
-                    <tr>
-                        <th><p>EA: <span id="slider1"></span></p></th>
-                        <th><p>gram: <span id="slider2"></span></p></th>
-                        <th><p>EA: <span id="slider3"></span></p></th>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="dropdown" style="float:right; position: absolute; left: 73.55%">
-=======
 
         <div class="dropdown" style="float:right; position: absolute; right: 45%; top: 24%">
->>>>>>> fd4fb87a76a8a01c2f7bd06ac99b06d3393a7ac8
             <button class="dropbtn">sort</button>
             <div class="dropdown-content" style="right:0;">
                 <a onclick="alphabetical()">alphabetical</a>
@@ -103,11 +75,14 @@
         <div id = "resultHolder" class = "resultHolder">
             <div class = "displayresult">
             </div>
+            <div class = "recipeResult">
+            </div>
             <div class = "AddRecipe">
                 <a href = "./create_recipe.html">
                     <h2 style = "color: whitesmoke;">Add Recipe</h2>    
                 </a>
             </div>
+            </br>
         </div>
         <div id = 'seperation' class = 'seperation'></div>
         </div>
@@ -119,14 +94,10 @@
 
     <script src="js/search.js"></script>
     <script>    
-
-
         // ===== GLOBALS ===== //
         let recipeDatabase = {};
         let searchPharseList = [];
         // ===== GLOBALS ===== //
-
-
         // ===== ASYNCHRONOUS TASKS: DATABASE RETRIEVAL & DISPLAY SEARCH RESULT ===== //
         var dbref = firebase.database().ref().child("recipes");
         dbref.on(
@@ -136,37 +107,15 @@
                 matchResultToDatabase();
             });
         // ===== ASYNCHRONOUS TASKS: DATABASE RETRIEVAL & DISPLAY SEARCH RESULT ===== //
-
-
         // ===== SYNCHRONOUS TASKS ===== //
         searchPharseList = JSON.parse(sessionStorage.getItem("searchPhraseList")); //["chicken", "onion", "pepper", "rice"];
         document.getElementById('searchBar').value = sessionStorage.getItem("searchPhrase");
-
         Array.prototype.diff = function(arr) {
             return this.filter( function(val) {
                 return arr.indexOf(val) < 0;
             });
         };
         // ===== SYNCHRONOUS TASKS ===== //
-
-        // ===== Kangmin Working on ===== //
-
-        document.getElementById('ingredient1').innerHTML = searchPharseList[0]
-        document.getElementById('ingredient2').innerHTML = searchPharseList[1]
-        document.getElementById('ingredient3').innerHTML = searchPharseList[2]
-
-        var slider = document.getElementById("ingredient1");
-        var output = document.getElementById("demo");
-        output.innerHTML = slider.value;
-
-        slider.oninput = function() {
-        output.innerHTML = this.value;
-        }
-        
-
-        // ===== Kangmin Working on ===== //
-
-
         // ===== FUNCTIONS ===== //
         function matchResultToDatabase() {
             for(let recipe in recipeDatabase) {
@@ -178,7 +127,6 @@
                 }
             }
         }
-
         function displayRecipeResultElement(recipeDictionary) {
             document.getElementById("seperation").innerHTML = 
             `
@@ -196,7 +144,6 @@
                 <button id = "second">Print</button>
                 <button id = "third">I Made This</button>
             </div>`
-
             document.getElementById("resultHolder").innerHTML = 
             `
             <div onclick="openup()" class = "recipeResult" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
@@ -211,22 +158,18 @@
             ` + document.getElementById("resultHolder").innerHTML;
             hide()
         }
-
         function hide(){
             document.getElementById('seperation').style.display = 'none';
         }
         function openup(){
             document.getElementById('seperation').style.display = 'block';
         }
-
         function closedown(){
             document.getElementById('seperation').style.display = 'none';
         }
-
         function buildIngredientsList(recipeDictionary) {
             return recipeDictionary['ingredients'].join(', ');
         }
-
         function alphabetical() {
             $('.recipeResult').sort(function(a, b) {
                 if (a.textContent < b.textContent) {
@@ -236,7 +179,6 @@
                 }
                 }).appendTo('.displayresult');
         }
-
         function cooktime() {
             $('.recipeResult').sort(function(a, b) {
                 if ($(a).data('cooktime') < $(b).data('cooktime')) {
@@ -246,7 +188,6 @@
                 }
                 }).appendTo('.displayresult');
         }
-
         function userrating() {
             $('.recipeResult').sort(function(a, b) {
                 if ($(a).data('rating') > $(b).data('rating')) {
@@ -256,12 +197,7 @@
                 }
                 }).appendTo('.displayresult');
         }
-
-
         // ===== FUNCTIONS ===== //
-
-
-
     </script>
 </body>
 </html>
