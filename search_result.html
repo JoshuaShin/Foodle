@@ -56,8 +56,15 @@
             <button id = "searchButton">Q</button>
             
         </div>
-
-        <div class="dropdown" style="float:right; position: absolute; right: 45%; top: 24%">
+        <div class="ingredientdown" style="float:left; position: absolute; left: 1.2%">
+            <button class="ingredientbtn">ingredients</button>
+            <div class="ingredient-content" style="left:0;">
+                <table class="buttontable">
+                    <tr class="tablecontents"><div id = "tr1"></div></tr>
+                </table>
+            </div>
+        </div>
+        <div class="dropdown" style="float:right; position: absolute; right: 47%">
             <button class="dropbtn">sort</button>
             <div class="dropdown-content" style="right:0;">
                 <a onclick="alphabetical()">alphabetical</a>
@@ -75,6 +82,7 @@
         <div id = "resultHolder" class = "resultHolder">
             <div class = "displayresult">
             </div>
+
             <div class = "AddRecipe">
                 <a href = "./create_recipe.html">
                     <h2 style = "color: whitesmoke;">Add Recipe</h2>    
@@ -95,6 +103,7 @@
         // ===== GLOBALS ===== //
         let recipeDatabase = {};
         let searchPharseList = [];
+        let meatandfish = ["chicken", "port", "beef", "salmon", "tuna", "turkey", "chickenbreast"];
         // ===== GLOBALS ===== //
         // ===== ASYNCHRONOUS TASKS: DATABASE RETRIEVAL & DISPLAY SEARCH RESULT ===== //
         var dbref = firebase.database().ref().child("recipes");
@@ -114,6 +123,24 @@
             });
         };
         // ===== SYNCHRONOUS TASKS ===== //
+
+        // ===== KANGMIN WORKING ON HERE ===== //
+        function maketr1() {
+            for(let i = 0; i < searchPharseList.length; i++) {
+                if(meatandfish.includes(searchPharseList[i])) {
+                    var para = document.createElement("th");
+                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" min="0" max="10" value="5" class="slider" id="ingredient1">` + '</br></br>gram : ';
+                    document.getElementById("tr1").appendChild(para);
+                }else{
+                    var para = document.createElement("th");
+                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" min="0" max="10" value="5" class="slider" id="ingredient1">` + '</br></br>EA : ';
+                    document.getElementById("tr1").appendChild(para); 
+                }
+            }
+        }
+        // ===== KANGMIN WORKING ON HERE ===== //
+
+        maketr1()
         // ===== FUNCTIONS ===== //
         function matchResultToDatabase() {
             for(let recipe in recipeDatabase) {
@@ -125,6 +152,7 @@
                 }
             }
         }
+
         function displayRecipeResultElement(recipeDictionary) {
             document.getElementById("seperation").innerHTML = 
             `
@@ -146,7 +174,7 @@
             `
             <div onclick="openup()" class = "recipeResult" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
                 <a href = "https://www.google.ca/">
-                    <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="100" width="500"></div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
+                    <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="100" width="700"></div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
                     `<span class = "timeandrating"> cooktime:  ` + recipeDictionary['cooktime'] + `  rating: 
                     <span class = "star">` + recipeDictionary['star'] + ` </span></span></h2></div>
                     <div><p style = "color: whitesmoke;"> Description: ` + recipeDictionary['description'] + ` </p></div>
