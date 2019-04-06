@@ -43,6 +43,17 @@
             bottom: 0;
             
         }
+
+        .item{
+            display:block;
+            float:left;
+            margin-left:25px;
+            position:relative;
+            min-height:35px;
+            max-width:125px;
+            padding-bottom:10px;
+            text-align:center;
+        }
         /* #resultHolder {
            padding-left: 23.75%; padding-right: 23.75%;
         } */
@@ -166,9 +177,11 @@
             <span class = "star">` + recipeDictionary['star'] + `</span>
             <br>
             <div id = "bottomStuff">
-                <button id = "first">Share</button>
-                <button id = "second">Print</button>
-                <button id = "third">I Made This</button>
+                <button class = "item">Share</button>
+                <button class = "item">Print</button>
+                <a href="profile.html">
+                    <button class = "item">I Made This</button>
+                </a>
             </div>`
             document.getElementById("resultHolder").innerHTML = 
             `
