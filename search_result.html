@@ -39,7 +39,12 @@
             width:800px;
         }
 
-        
+        #bottomStuff{
+            position: absolute;
+            margin-left: 30%;
+            bottom: 0;
+            
+        }
         /* #resultHolder {
            padding-left: 23.75%; padding-right: 23.75%;
         } */
@@ -145,6 +150,11 @@
             <div><p style = "color: whitesmoke;">` + recipeDictionary['cooktime'] + `</p></div>
             <br>
             <span class = "star">` + recipeDictionary['star'] + `</span>
+            <br>
+            <div id = "bottomStuff">
+                <button id = "first">Share</button>
+                <button id = "second">Print</button>
+                <button id = "third">I Made This</button>
             </div>`
 
             document.getElementById("resultHolder").innerHTML = 
