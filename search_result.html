@@ -22,11 +22,26 @@
         .recipeResult {
             border-radius: 1px;
             background-color: rgba(45, 45, 45, 0.60);
-            padding: 1px;
+            padding: 20px;
             padding-left: 20px;
+            border-color: rgba(45, 45, 45, 0.60);
         }
         a {
             text-decoration: none;
+        }
+        .dropbtn{
+            text-align: left;
+        }
+        #resultHolder{
+            padding:20px;
+            width:800px;
+        }
+
+        #bottomStuff{
+            position: absolute;
+            margin-left: 30%;
+            bottom: 0;
+            
         }
         /* #resultHolder {
            padding-left: 23.75%; padding-right: 23.75%;
@@ -35,14 +50,14 @@
 </head>
 <body>
     <div>
-        <div id = "searchTop">
+        <div id = "searchTop2">
             <a id = "foodleLogo" class = "unselectable" href = "./index.html"><h1>FOODLE</h1></a>
             <input id = "searchBar" type = "text" placeholder = "#Carrots #Peas #Potatoes #Lunch #Vegan">
             <button id = "searchButton">Q</button>
             
         </div>
 
-        <div class="dropdown" style="float:right; position: absolute; left: 73.6%">
+        <div class="dropdown" style="float:right; position: absolute; right: 45%; top: 24%">
             <button class="dropbtn">sort</button>
             <div class="dropdown-content" style="right:0;">
                 <a onclick="alphabetical()">alphabetical</a>
@@ -59,8 +74,6 @@
         <div class = 'container'>
         <div id = "resultHolder" class = "resultHolder">
             <div class = "displayresult">
-            </div>
-            <div class = "recipeResult">
             </div>
             <div class = "AddRecipe">
                 <a href = "./create_recipe.html">
@@ -79,14 +92,10 @@
 
     <script src="js/search.js"></script>
     <script>    
-
-
         // ===== GLOBALS ===== //
         let recipeDatabase = {};
         let searchPharseList = [];
         // ===== GLOBALS ===== //
-
-
         // ===== ASYNCHRONOUS TASKS: DATABASE RETRIEVAL & DISPLAY SEARCH RESULT ===== //
         var dbref = firebase.database().ref().child("recipes");
         dbref.on(
@@ -96,20 +105,15 @@
                 matchResultToDatabase();
             });
         // ===== ASYNCHRONOUS TASKS: DATABASE RETRIEVAL & DISPLAY SEARCH RESULT ===== //
-
-
         // ===== SYNCHRONOUS TASKS ===== //
         searchPharseList = JSON.parse(sessionStorage.getItem("searchPhraseList")); //["chicken", "onion", "pepper", "rice"];
         document.getElementById('searchBar').value = sessionStorage.getItem("searchPhrase");
-
         Array.prototype.diff = function(arr) {
             return this.filter( function(val) {
                 return arr.indexOf(val) < 0;
             });
         };
         // ===== SYNCHRONOUS TASKS ===== //
-
-
         // ===== FUNCTIONS ===== //
         function matchResultToDatabase() {
             for(let recipe in recipeDatabase) {
@@ -121,12 +125,9 @@
                 }
             }
         }
-
         function displayRecipeResultElement(recipeDictionary) {
             document.getElementById("seperation").innerHTML = 
             `
-            <br>
-            <br>
             <div class = "okay">
             <div><p style = "color: whitesmoke;">` + recipeDictionary['name'] + `</p></div>\
             <br>   
@@ -135,11 +136,15 @@
             <div><p style = "color: whitesmoke;">` + recipeDictionary['cooktime'] + `</p></div>
             <br>
             <span class = "star">` + recipeDictionary['star'] + `</span>
+            <br>
+            <div id = "bottomStuff">
+                <button id = "first">Share</button>
+                <button id = "second">Print</button>
+                <button id = "third">I Made This</button>
             </div>`
-
             document.getElementById("resultHolder").innerHTML = 
             `
-            <div onmouseover="yeeT()" onmouseout="yotE()" class = "recipeResult" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
+            <div onclick="openup()" class = "recipeResult" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
                 <a href = "https://www.google.ca/">
                     <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="100" width="500"></div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
                     `<span class = "timeandrating"> cooktime:  ` + recipeDictionary['cooktime'] + `  rating: 
@@ -149,20 +154,20 @@
                 </a>
             </div>
             ` + document.getElementById("resultHolder").innerHTML;
+            hide()
         }
-
-        function yeeT(){
-            document.getElementById('seperation').style.display = 'block';
-        }
-
-        function yotE(){
+        function hide(){
             document.getElementById('seperation').style.display = 'none';
         }
-
+        function openup(){
+            document.getElementById('seperation').style.display = 'block';
+        }
+        function closedown(){
+            document.getElementById('seperation').style.display = 'none';
+        }
         function buildIngredientsList(recipeDictionary) {
             return recipeDictionary['ingredients'].join(', ');
         }
-
         function alphabetical() {
             $('.recipeResult').sort(function(a, b) {
                 if (a.textContent < b.textContent) {
@@ -172,7 +177,6 @@
                 }
                 }).appendTo('.displayresult');
         }
-
         function cooktime() {
             $('.recipeResult').sort(function(a, b) {
                 if ($(a).data('cooktime') < $(b).data('cooktime')) {
@@ -182,7 +186,6 @@
                 }
                 }).appendTo('.displayresult');
         }
-
         function userrating() {
             $('.recipeResult').sort(function(a, b) {
                 if ($(a).data('rating') > $(b).data('rating')) {
@@ -192,12 +195,7 @@
                 }
                 }).appendTo('.displayresult');
         }
-
-
         // ===== FUNCTIONS ===== //
-
-
-
     </script>
 </body>
 </html>
