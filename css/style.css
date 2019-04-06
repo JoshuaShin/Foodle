@@ -245,10 +245,10 @@ img {
 
 .image-wrapper {
     float: left;
-    width : 800px;
+    width : 350px;
     height : 200px;
     overflow: hidden;
-    margin-right: 30px;
+    margin-right: 0px;
 }
 .slider {
     -webkit-appearance: none;

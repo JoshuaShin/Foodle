@@ -205,10 +205,10 @@
             `
             <div onclick="openup()" class = "recipeResult" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
                 <a href = "https://www.google.ca/">
-                    <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="100" width="700"></div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
-                    `<span class = "timeandrating"> cooktime:  ` + recipeDictionary['cooktime'] + `  rating: 
-                    <span class = "star">` + recipeDictionary['star'] + ` </span></span></h2></div>
+                    <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="100" width="300"></div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
+                    `<span class = "timeandrating"><span class = "star">` + recipeDictionary['star'] + ` </span></span></h2></div>
                     <div><p style = "color: whitesmoke;"> Description: ` + recipeDictionary['description'] + ` </p></div>
+                    <p style = "color: whitesmoke;">cooktime:  ` + recipeDictionary['cooktime'] + `</p>
                     <div><p style = "color: whitesmoke;"> Ingredients: ` + buildIngredientsList(recipeDictionary) + `</p></div>
                 </a>
             </div>
