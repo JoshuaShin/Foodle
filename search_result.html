@@ -72,7 +72,6 @@
             <div class="ingredient-content" style="left:0;">
                 <table class="buttontable">
                     <tr class="tablecontents"><div id = "tr1"></div></tr>
-                    <th><button onclick="myFunction()">Sigh...</button><th>
                 </table>
             </div>
         </div>
@@ -115,7 +114,8 @@
         // ===== GLOBALS ===== //
         let recipeDatabase = {};
         let searchPharseList = [];
-        let meatandfish = ["chicken", "port", "beef", "salmon", "tuna", "turkey", "chickenbreast"];
+        let meatandfish = ["chicken", "port", "beef", "salmon", "tuna", "turkey", "chickenbreast", "butter", "cheese"];
+        let liquid = ["galicsauce", "oil", "coconutmilk", "milk", "cream", "tomatosauce", "teriyakisauce"]
         // ===== GLOBALS ===== //
         // ===== ASYNCHRONOUS TASKS: DATABASE RETRIEVAL & DISPLAY SEARCH RESULT ===== //
         var dbref = firebase.database().ref().child("recipes");
@@ -141,13 +141,18 @@
             for(let i = 0; i < searchPharseList.length; i++) {
                 if(meatandfish.includes(searchPharseList[i])) {
                     var para = document.createElement("th");
-                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" min="0" max="1000" value="500" class="slider" id="ingredient` + i +`">
-                    </br></br>gram : <span id="demo`+ i +`"></span>g`;
+                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" onchange="myFunction()" min="0" max="1000" value="500" class="slider" id="ingredient` + i +`">
+                    </br></br>gram : <span id="demo`+ i +`">500</span>g`;
+                    document.getElementById("tr1").appendChild(para);
+                }else if (liquid.includes(searchPharseList[i])){
+                    var para = document.createElement("th");
+                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" onchange="myFunction()" min="0" max="1000" value="500" class="slider" id="ingredient` + i +`">
+                    </br></br>Liter : <span id="demo`+ i +`">500</span>ml`;
                     document.getElementById("tr1").appendChild(para);
                 }else{
                     var para = document.createElement("th");
-                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" min="0" max="10" value="5" class="slider" id="ingredient` + i +`">
-                    </br></br>EA : <span id="demo`+ i +`"></span>`;
+                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" onchange="myFunction()" min="0" max="10" value="5" class="slider" id="ingredient` + i +`">
+                    </br></br>EA : <span id="demo`+ i +`">5</span>`;
                     document.getElementById("tr1").appendChild(para); 
                 }
             }
