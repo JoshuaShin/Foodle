@@ -14,13 +14,40 @@ h1 {
     color: white;
     outline: none;
 }
+
+#loginButton{
+    text-align: right;
+    text-decoration: none;
+    color: white;
+    
+}
+
 #foodleLogo {
     text-decoration: none;
 }
+
+#searchTop2{
+    text-align: left;
+    padding: 20px;
+}
+
 #searchTop {
     text-align: center;
     padding: 10px;
 }
+
+#loginsearch {
+    text-align: center;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80%; /*TODO: make better search bar centering*/
+}
+
 #search {
     text-align: center;
     position: absolute;
@@ -172,6 +199,13 @@ h1 {
 .star {
     color: gold;
 }
+
+
+.container{
+    display:flex;
+    margin:0; 
+}
+
 .recipeResult::after {
     content: "";
     clear: both;
@@ -179,14 +213,38 @@ h1 {
     margin-bottom: 15px;
     margin-right: 15px;
 }
+
+.okay{
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: rgba(45, 45, 45, 0.60);
+    padding: 10px;
+    height: 670px;
+    width: 425px;
+    text-align: center;
+}
+
+#recipeResult{
+    flex: 0 0 65;
+    overflow: hidden;
+    float: left;
+    width: 100%;
+}
+
 img {
     float: left;
     max-width: 100%;
     height: auto;
 }
+
+#seperation{
+    position: fixed;
+    right: 3%;
+    top: 10%
+}
+
 .image-wrapper {
     float: left;
-    width : 33%;
+    width : 800px;
     height : 200px;
     overflow: hidden;
     margin-right: 30px;

@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+    
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBrGlVFqo2ixWMzeeq6ppt4jaMErC8H5LY",
+    authDomain: "foodle-d4b88.firebaseapp.com",
+    databaseURL: "https://foodle-d4b88.firebaseio.com",
+    projectId: "foodle-d4b88",
+    storageBucket: "foodle-d4b88.appspot.com",
+    messagingSenderId: "506441498159"
+  };
+  firebase.initializeApp(config);
+</script>
+</head>
+<body>
+    <script>
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    </script>
+    <div id="loginsearch">
+    <a id = "foodleLogo" class = "unselectable" href = "./index.html"><h1>FOODLE</h1></a>
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Loading...</div>
+    </div>
+    
+
+    <script>
+    var uiConfig = {
+        callbacks: {
+            signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+            return true;
+            },
+            uiShown: function() {
+            document.getElementById('loader').style.display = 'none';
+            }
+        },
+        signInFlow: 'popup',
+        signInSuccessUrl: 'index.html',
+        signInOptions: [
+            firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        ],
+        tosUrl: 'index.html',
+        privacyPolicyUrl: 'index.html'
+        };
+        ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
+</body>
+</html>
