@@ -26,10 +26,10 @@
             background-color: rgba(45, 45, 45, 0.60);
             padding: 10px;
             outline: none;
-            color: white;
+            color: whitesmoke;
         }
         p {
-            color: white;
+            color: whitesmoke;
         }
     </style>
 </head>
@@ -43,15 +43,15 @@
 
         <div id = "createRecipeHolder">
             <p>Title</p>
-            <textarea id = "title" rows = "1" cols = "140"></textarea>
-            <p>Cook Time</p>
-            <textarea id = "cooktime" rows = "1" cols = "140"></textarea>
+            <textarea id = "title" rows = "1" cols = "110" placeholder="Your Amazing Recipe!"></textarea>
+            <p>Cook Time (Minutes)</p>
+            <textarea id = "cooktime" rows = "1" cols = "110" placeholder="15"></textarea>
             <p>Description</p>
-            <textarea id = "description" rows = "6" cols = "140"></textarea>
+            <textarea id = "description" rows = "6" cols = "110" placeholder="Tell us about your dish"></textarea>
             <p>Ingredients</p>
-            <textarea id = "ingredients" rows = "6" cols = "140"></textarea>
+            <textarea id = "ingredients" rows = "1" cols = "110" placeholder="#Carrots #Peas #Potatoes"></textarea>
             <p>Steps</p>
-            <textarea id = "steps" rows = "6" cols = "140"></textarea>
+            <textarea id = "steps" rows = "6" cols = "110" placeholder="1. First step is..."></textarea>
             <br/><br/>
             <button id = "addRecipeButton">+</button>
         </div> 
@@ -87,6 +87,7 @@
 
                 dbref.then(function() {
                     window.location.href = "./search_result.html";
+                    window.alert("Recipe added!");
                 });    
                             
             }
