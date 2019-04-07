@@ -53,13 +53,15 @@
             <textarea id = "ingredients" rows = "1" cols = "110" placeholder="#Carrots #Peas #Potatoes"></textarea>
             <p>Steps</p>
             <textarea id = "steps" rows = "6" cols = "110" placeholder="1. First step is..."></textarea>
+            <p>URL</p>
+            <textarea id = "urladdress" rows = "1" cols = "110" placeholder="https://"></textarea>
             <p>Image upload</p>
             <div id="filesubmit">
-            <input type="file" class="file-select" accept="image/*"/>
-            <button class="file-submit">SUBMIT</button>
+            <input id="imagename" type="file" class="file-select" accept="image/*"/>
             </div>
             <br/><br/>
             <button id = "addRecipeButton">+</button>
+            <button onclick="getURLaddress()">+++</button>
 
         </div> 
         
@@ -69,9 +71,10 @@
 
         const storageService = firebase.storage();
         const storageRef = storageService.ref();
+        var urladdress
 
         document.querySelector('.file-select').addEventListener('change', handleFileUploadChange);
-        document.querySelector('.file-submit').addEventListener('click', handleFileUploadSubmit);
+        // document.querySelector('.file-submit').addEventListener('click', handleFileUploadSubmit);
 
         let selectedFile;
         function handleFileUploadChange(e) {
@@ -84,21 +87,44 @@
         }, (error) => {
             console.log(error);
         }, () => {
+            getURLaddress()
             console.log('success');
         });
         }
+
+        // function imgname() {
+        //     var imgname = document.getElementById("imagename").files[0]["name"]
+        //     console.log(imgname)
+        // }
+
+        
+
+        function getURLaddress() {
+            var imgname = "images/" + document.getElementById("imagename").files[0]["name"]
+            console.log(imgname)
+            firebase.storage().ref().child(imgname).getDownloadURL().then( function(url) {
+            document.getElementById("urladdress").innerHTML = url;
+            console.log("storage image URL: " + url);
+            console.log(url)
+        }).catch(function(error) {
+            console.log(error);
+        });
+        }
+        
 
         // DONT TOUCH!!!!!!!!!! KANGMIN IS WORKING ON HERE //
 
         let addRecipeButton = document.getElementById("addRecipeButton");
 
         addRecipeButton.addEventListener("click", function (event) {
+            handleFileUploadSubmit();
             writeRecipe();
         });
 
         function writeRecipe() {
             let title = document.getElementById("title").value;
             let cooktime = document.getElementById("cooktime").value;
+            let image = document.getElementById("urladdress").value;
             let description = document.getElementById("description").value;
             let ingredients = buildSearchPhraseResult(document.getElementById("ingredients").value);
             let steps = document.getElementById("steps").value;
@@ -109,6 +135,7 @@
                 let dbref = firebase.database().ref("recipes/" + title).set({
                     "name": title,
                     "cooktime": cooktime,
+                    "image" : image,
                     "description": description,
                     "ingredients": ingredients,
                     "steps": steps,
