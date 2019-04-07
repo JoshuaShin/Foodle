@@ -159,27 +159,73 @@
 
         function madeThisRecipe() {
             let sliders = document.getElementsByClassName("slider");
+            let ingredientsUsed = {}
+            let historyMade = {}
 
-            for(let i = 0; i < sliders.length; i++) {
-                firebase.auth().onAuthStateChanged(function(user){
-                    if(user) {
-                        let ingredientsUsed = {}
-                        ingredientsUsed[sliders[i].id] = sliders[i].value;
+            firebase.auth().onAuthStateChanged(function(user){
+                if(user){
+                    console.log(user.uid)
 
-                        let historyMade = {}
-                        historyMade[new Date().toString()] = currentRecipe;
+                    var dbref = firebase.database().ref().child("users/" + user.uid + "/ingredients/");
+                    dbref.on(
+                        "value",
+                        function(snap) {
+                            let existingIngredientsUsed = snap.val();
+                            console.log(existingIngredientsUsed);
 
-                        let dbref = firebase.database().ref("users/" + user.uid + "/history/").update(
-                            historyMade
-                        );
-                        dbref = firebase.database().ref("users/" + user.uid + "/ingredients/").update(
-                            ingredientsUsed
-                        );
-                    }
-                })
-            }
-            window.alert(currentRecipe + " added to history!");
+                            for (var key in existingIngredientsUsed) {
+                                ingredientsUsed[key] = existingIngredientsUsed[key];
+                                console.log(ingredientsUsed);
+                            }
+                            console.log(sliders.length)
+
+                            for(let i = 0; i < sliders.length; i++) {
+
+                                if (sliders[i].id in ingredientsUsed) {
+                                    ingredientsUsed[sliders[i].id] += Number(sliders[i].value);
+                                }
+                                else {
+                                    ingredientsUsed[sliders[i].id] = Number(sliders[i].value);
+                                }
+
+                                historyMade[new Date().toString()] = currentRecipe;
+
+                                console.log(ingredientsUsed);
+ 
+
+                                
+                            }
+
+                        });
+
+                        setTimeout(function(){
+                            recordHistoryAndIngredients(historyMade, ingredientsUsed, user.uid)
+                            window.alert(currentRecipe + " added to history!");
+                        }, 1000); 
+
+                }
+
+
+
+
+            })
+            
+
+
+            
         }
+
+        function recordHistoryAndIngredients(historyMade, ingredientsUsed, uid) {
+
+                    let dbref = firebase.database().ref("users/" + uid + "/history/").update(
+                        historyMade
+                    );
+                    let dbref2 = firebase.database().ref("users/" + uid + "/ingredients/").set(
+                        ingredientsUsed
+                    );
+                }
+
+        
         
     
         function myFunction() {
