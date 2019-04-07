@@ -34,14 +34,16 @@
         }
         #resultHolder{
             padding:20px;
-            width:800px;
+            width:60%;
         }
 
         #bottomStuff{
+            /* position: absolute; */
             position: absolute;
-            margin-left: 58%;
-            bottom: 0;
-            padding: 10px;
+            bottom: 0%;
+            left: 67%;
+            /* bottom: 0;
+            padding: 10px; */
         }
 
         .item{
@@ -97,6 +99,7 @@
             </div>
             </br>
         </div>
+
         <div id = 'seperation' class = 'seperation'></div>
         </div>
     </div>
@@ -286,13 +289,13 @@
             document.getElementById("seperation").innerHTML = 
             `
             <div class = "okay">
-            <div><p style = "color: whitesmoke;"><b>Recipe Name: </b>` + recipeDictionary['name'] + `</p></div>\
+            <div><p style = "color: whitesmoke;"><b>Recipe Name: </b>` + recipeDictionary['name'] + `</p></div>
             <br>   
             <div><p style = "color: whitesmoke;"><b>Description: </b>` + recipeDictionary['description'] + `</p></div>
             <br>
             <div><p style = "color: whitesmoke;"><b>Cooktime: </b>` + recipeDictionary['cooktime'] + `</p></div>
             <br>
-            <span class = "star"><b>Rating: </b>` + recipeDictionary['star'] + `</span>
+            <div class = "star"><b>Rating: </b>` + recipeDictionary['star'] + `</div>
             <br>
             <div><p style = "color: whitesmoke;"><b>Recipe Steps: </b>` + recipeDictionary['steps'] + `</p></div>
             <br>
@@ -301,7 +304,8 @@
                 <img src="images/download.png" class = "item">
                 <img src="images/printer.png" class = "item">
                 <img src="images/save.png" class = "item" onclick = "madeThisRecipe()">
-            </div>`;
+            </div>
+            </div>`; 
 
             document.getElementById('seperation').style.display = 'block';
         }
