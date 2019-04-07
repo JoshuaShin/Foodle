@@ -111,6 +111,7 @@
         let searchPharseList = [];
         let meatandfish = ["chicken", "port", "beef", "salmon", "tuna", "turkey", "chickenbreast", "butter", "cheese"];
         let liquid = ["galicsauce", "oil", "coconutmilk", "milk", "cream", "tomatosauce", "teriyakisauce"]
+        let currentRecipe = '';
         // ===== GLOBALS ===== //
         // ===== ASYNCHRONOUS TASKS: DATABASE RETRIEVAL & DISPLAY SEARCH RESULT ===== //
         var dbref = firebase.database().ref().child("recipes");
@@ -159,20 +160,24 @@
             let sliders = document.getElementsByClassName("slider");
 
             for(let i = 0; i < sliders.length; i++) {
-                console.log(sliders[i].id, sliders[i].value);
-                
                 firebase.auth().onAuthStateChanged(function(user){
                     if(user) {
-                        let newData = {}
-                        newData[sliders[i].id] = sliders[i].value;
-                        console.log(user.uid)
-                        let dbref = firebase.database().ref("users/" + user.uid + "/ingredients/").update(
-                            newData
+                        let ingredientsUsed = {}
+                        ingredientsUsed[sliders[i].id] = sliders[i].value;
+
+                        let historyMade = {}
+                        historyMade[new Date().toString()] = currentRecipe;
+
+                        let dbref = firebase.database().ref("users/" + user.uid + "/history/").update(
+                            historyMade
+                        );
+                        dbref = firebase.database().ref("users/" + user.uid + "/ingredients/").update(
+                            ingredientsUsed
                         );
                     }
                 })
             }
-            window.alert("Added to history!");
+            window.alert(currentRecipe + " added to history!");
         }
         
     
@@ -230,6 +235,7 @@
             document.getElementById('seperation').style.display = 'none';
         }
         function openup(recipeDictionary){
+            currentRecipe = recipeDictionary['name'];
             document.getElementById("seperation").innerHTML = 
             `
             <div class = "okay">
