@@ -136,28 +136,37 @@
             for(let i = 0; i < searchPharseList.length; i++) {
                 if(meatandfish.includes(searchPharseList[i])) {
                     var para = document.createElement("th");
-                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" onchange="myFunction()" min="0" max="1000" value="500" class="slider" id="ingredient` + i +`">
+                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" onchange="myFunction()" min="0" max="1000" value="500" class="slider" id="` + searchPharseList[i] + `">
                     </br></br>gram : <span id="demo`+ i +`">500</span>g`;
                     document.getElementById("tr1").appendChild(para);
                 }else if (liquid.includes(searchPharseList[i])){
                     var para = document.createElement("th");
-                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" onchange="myFunction()" min="0" max="1000" value="500" class="slider" id="ingredient` + i +`">
+                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" onchange="myFunction()" min="0" max="1000" value="500" class="slider" id="` + searchPharseList[i] + `">
                     </br></br>Liter : <span id="demo`+ i +`">500</span>ml`;
                     document.getElementById("tr1").appendChild(para);
                 }else{
                     var para = document.createElement("th");
-                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" onchange="myFunction()" min="0" max="10" value="5" class="slider" id="ingredient` + i +`">
+                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" onchange="myFunction()" min="0" max="10" value="5" class="slider" id="` + searchPharseList[i] + `">
                     </br></br>EA : <span id="demo`+ i +`">5</span>`;
                     document.getElementById("tr1").appendChild(para); 
                 }
             }
         }
 
-        maketr1()
+        maketr1();
+        sliderData();
+
+        function sliderData() {
+            let sliders = document.getElementsByClassName("slider");
+            for(let i = 0; i < sliders.length; i++) {
+                console.log(sliders[i].id, sliders[i].value);
+            }
+        }
     
         function myFunction() {
+            let sliders = document.getElementsByClassName("slider");
             for(let i = 0; i < searchPharseList.length; i++) {
-                var x = document.getElementById("ingredient" + i).value;
+                var x = sliders[i].value;
                 document.getElementById("demo" + i).innerHTML = x;
             }
         }
