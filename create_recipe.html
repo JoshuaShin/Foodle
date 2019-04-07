@@ -3,18 +3,18 @@
 <head>
     <link rel = "stylesheet" type = "text/css" href = "css/style.css">
 
-    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
     <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyBrGlVFqo2ixWMzeeq6ppt4jaMErC8H5LY",
-            authDomain: "foodle-d4b88.firebaseapp.com",
-            databaseURL: "https://foodle-d4b88.firebaseio.com",
-            projectId: "foodle-d4b88",
-            storageBucket: "foodle-d4b88.appspot.com",
-            messagingSenderId: "506441498159"
-        };
-        firebase.initializeApp(config);
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBrGlVFqo2ixWMzeeq6ppt4jaMErC8H5LY",
+        authDomain: "foodle-d4b88.firebaseapp.com",
+        databaseURL: "https://foodle-d4b88.firebaseio.com",
+        projectId: "foodle-d4b88",
+        storageBucket: "foodle-d4b88.appspot.com",
+        messagingSenderId: "506441498159"
+      };
+      firebase.initializeApp(config);
     </script>
 
     <style>
@@ -34,6 +34,7 @@
     </style>
 </head>
 <body>
+    
     <div>
         <div id = "searchTop">
             <a id = "foodleLogo" class = "unselectable" href = "./index.html"><h1>FOODLE</h1></a>
@@ -52,12 +53,42 @@
             <textarea id = "ingredients" rows = "1" cols = "110" placeholder="#Carrots #Peas #Potatoes"></textarea>
             <p>Steps</p>
             <textarea id = "steps" rows = "6" cols = "110" placeholder="1. First step is..."></textarea>
+            <p>Image upload</p>
+            <div id="filesubmit">
+            <input type="file" class="file-select" accept="image/*"/>
+            <button class="file-submit">SUBMIT</button>
+            </div>
             <br/><br/>
             <button id = "addRecipeButton">+</button>
-        </div> 
 
+        </div> 
         
     <script>
+
+        // DONT TOUCH!!!!!!!!!! KANGMIN IS WORKING ON HERE //
+
+        const storageService = firebase.storage();
+        const storageRef = storageService.ref();
+
+        document.querySelector('.file-select').addEventListener('change', handleFileUploadChange);
+        document.querySelector('.file-submit').addEventListener('click', handleFileUploadSubmit);
+
+        let selectedFile;
+        function handleFileUploadChange(e) {
+            selectedFile = e.target.files[0];
+        }
+
+        function handleFileUploadSubmit(e) {
+        const uploadTask = storageRef.child(`images/${selectedFile.name}`).put(selectedFile);
+        uploadTask.on('state_changed', (snapshot) => {
+        }, (error) => {
+            console.log(error);
+        }, () => {
+            console.log('success');
+        });
+        }
+
+        // DONT TOUCH!!!!!!!!!! KANGMIN IS WORKING ON HERE //
 
         let addRecipeButton = document.getElementById("addRecipeButton");
 
