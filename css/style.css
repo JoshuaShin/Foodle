@@ -16,7 +16,8 @@ h1 {
 }
 
 #loginButton{
-    text-align: right;
+    position: absolute;
+    right: 2.5%;
     text-decoration: none;
     color: white;
     
