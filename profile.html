@@ -47,7 +47,6 @@
         <br/>
 
         <div id = "scoreBoard">
-            <p><b>Your total savings:</b></p><br>
 
             
         </div> 
@@ -60,12 +59,6 @@
     firebase.auth().onAuthStateChanged(function(user){
         if(user){
             console.log(user.uid)
-
-            // let dbref = firebase.database().ref("users/" + user.uid).update({
-            //         "score": 10,
-
-            //     });
-
 
             var dbref = firebase.database().ref().child("users/" + user.uid);
             dbref.on(
@@ -80,12 +73,35 @@
 
 
     function displayScore(user_info) {
-        ingredient_info = user_info["ingredients"];
-        for (var key in ingredient_info) {
+        document.getElementById("scoreBoard").innerHTML = 
+        `
+        <p style = "font-size: 24px"><b>History:</b></p><br>
+        `
+
+        history_info = user_info["history"];
+        for (var key in history_info) {
+
             document.getElementById("scoreBoard").innerHTML += 
             `
             <div class = "entry">
-                <div><p style = "color: whitesmoke;">` + key + `: ` + ingredient_info[key] + `</p></div>   
+                <div><p style = "color: whitesmoke;"><b>` + key.split(" ").splice(0, 4).join(" ") + `<b>: ` + history_info[key] + `</p></div>   
+            </div>
+            <br>
+            `
+        }
+
+        document.getElementById("scoreBoard").innerHTML += 
+        `
+        <p style = "font-size: 24px"><b>Your total savings:</b></p><br>
+        `
+
+        ingredient_info = user_info["ingredients"];
+        for (var key in ingredient_info) {
+
+            document.getElementById("scoreBoard").innerHTML += 
+            `
+            <div class = "entry">
+                <div><p style = "color: whitesmoke;"><b>` + key + `<b>: ` + ingredient_info[key] + `</p></div>   
             </div>
             <br>
             `
