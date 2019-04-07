@@ -154,14 +154,27 @@
         }
 
         maketr1();
-        sliderData();
 
-        function sliderData() {
+        function madeThisRecipe() {
             let sliders = document.getElementsByClassName("slider");
+
             for(let i = 0; i < sliders.length; i++) {
                 console.log(sliders[i].id, sliders[i].value);
+                
+                firebase.auth().onAuthStateChanged(function(user){
+                    if(user) {
+                        let newData = {}
+                        newData[sliders[i].id] = sliders[i].value;
+                        console.log(user.uid)
+                        let dbref = firebase.database().ref("users/" + user.uid + "/ingredients/").update(
+                            newData
+                        );
+                    }
+                })
             }
+            window.alert("Added to history!");
         }
+        
     
         function myFunction() {
             let sliders = document.getElementsByClassName("slider");
@@ -234,9 +247,7 @@
             <div id = "bottomStuff">
                 <img src="images/download.png" class = "item">
                 <img src="images/printer.png" class = "item">
-                <a href="profile.html">
-                    <img src="images/save.png" class = "item">
-                </a>
+                <img src="images/save.png" class = "item" onclick = "madeThisRecipe()">
             </div>`;
 
             document.getElementById('seperation').style.display = 'block';
