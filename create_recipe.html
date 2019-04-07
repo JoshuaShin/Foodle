@@ -61,7 +61,6 @@
             </div>
             <br/><br/>
             <button id = "addRecipeButton">+</button>
-            <button onclick="getURLaddress()">+++</button>
 
         </div> 
         
@@ -87,7 +86,7 @@
         }, (error) => {
             console.log(error);
         }, () => {
-            getURLaddress()
+            getURLaddress();
             console.log('success');
         });
         }
@@ -100,12 +99,12 @@
         
 
         function getURLaddress() {
-            var imgname = "images/" + document.getElementById("imagename").files[0]["name"]
-            console.log(imgname)
+            var imgname = "images/" + document.getElementById("imagename").files[0]["name"];
+            console.log(imgname);
             firebase.storage().ref().child(imgname).getDownloadURL().then( function(url) {
             document.getElementById("urladdress").innerHTML = url;
             console.log("storage image URL: " + url);
-            console.log(url)
+            console.log(url);
         }).catch(function(error) {
             console.log(error);
         });
@@ -118,7 +117,7 @@
 
         addRecipeButton.addEventListener("click", function (event) {
             handleFileUploadSubmit();
-            writeRecipe();
+            setTimeout(writeRecipe, 5000);
         });
 
         function writeRecipe() {
