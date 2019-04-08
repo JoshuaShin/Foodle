@@ -9,14 +9,15 @@
 
     <style>
         .recipeResult {
-            border-radius: 1px;
-            background-color: rgba(45, 45, 45, 0.60);
-            padding: 20px;
-            padding-left: 20px;
-            border-color: rgba(45, 45, 45, 0.60);
+        border-radius: 1px;
+        background-color: rgba(45, 45, 45, 0.60);
+        padding: 20px;
+        padding-left: 20px;
+        border-color: rgba(45, 45, 45, 0.60);
         }
+
         a {
-            text-decoration: none;
+        text-decoration: none;
         }
         .dropbtn{
             text-align: left;
@@ -28,21 +29,45 @@
 
         #bottomStuff{
             /* position: absolute; */
-            position: absolute;
-            bottom: 0%;
-            left: 67%;
+            /* text-align: center; */
             /* bottom: 0;
             padding: 10px; */
         }
 
-        .item{
-            height: 50px;
-            width: 50px;
-            color: white;
+        .imageHolder{
+            position: relative;
+            height: 75%;
+            width: 75%;
+            left: 13%;
+
         }
-        /* #resultHolder {
-           padding-left: 23.75%; padding-right: 23.75%;
-        } */
+
+        .item{
+            height: 25px;
+            width: 25px;
+            color: white; 
+        }
+
+        #download{
+            position: absolute;
+            bottom: 5%;
+            width: 80%;
+            right: 9%;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            padding: 12px 24px;
+            border-radius: 1px;
+            font: normal normal bold 20px arial;
+            color: white;
+            background: rgba(45, 45, 45, 0.6)
+        }
+
+        .topStuff{
+            position: relative;
+            right: 0%;
+        }
+
     </style>
 </head>
 <body>
@@ -280,6 +305,12 @@
             document.getElementById("seperation").innerHTML = 
             `
             <div class = "okay">
+            <div>
+                <img src="images/download.png" class = "item">
+                <img src="images/printer.png" class = "item">
+            </div>
+            <br>
+            <br>
             <div><p style = "color: whitesmoke;"><b>Recipe Name: </b>` + recipeDictionary['name'] + `</p></div>
             <br>   
             <div><p style = "color: whitesmoke;"><b>Description: </b>` + recipeDictionary['description'] + `</p></div>
@@ -290,12 +321,8 @@
             <br>
             <div><p style = "color: whitesmoke;"><b>Recipe Steps: </b>` + recipeDictionary['steps'] + `</p></div>
             <br>
-            <div><img src="`+ recipeDictionary['image'] + `"></p></div>
-            <div id = "bottomStuff">
-                <img src="images/download.png" class = "item">
-                <img src="images/printer.png" class = "item">
-                <img src="images/save.png" class = "item" onclick = "madeThisRecipe()">
-            </div>
+            <div><img class = "imageHolder" src="`+ recipeDictionary['image'] + `"></p></div>
+            <button type="button" id = "download" onclick = "madeThisRecipe()">I Made This!</button>
             </div>`; 
 
             document.getElementById('seperation').style.display = 'block';
