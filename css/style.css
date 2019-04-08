@@ -12,8 +12,9 @@ body {
 h1 {
     font-size: 48px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: white;
+    color: orange;
     outline: none;
+    word-spacing: -10px;
 }
 
 a {
@@ -87,21 +88,21 @@ a {
     border: none;
     outline: none;
     padding: 6px;
-    width: 60%;
-    height: 25px;
+    width: 35%;
+    height: 24px;
     font-size: 17px;
 }
 #searchButton,
 #addRecipeButton {
-    border-radius: 5px;
+    border-radius: 2px;
     border: 1px;
     outline: none;
     padding: 6px;
-    height: 37px;
-    width: 37px;
+    height: 36.5px;
+    width: 36.5px;
     font-size: 17px;
-    background-color: white;
-    color: rgb(45, 45, 45);
+    background-color: orange;
+    color: whitesmoke;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -117,7 +118,7 @@ a {
     transition-duration: 0.3s;
 }
 #searchButton:active {
-    background-color: white;
+    background-color: whitesmoke;
     /* color: black; */
     
     -webkit-transition-duration: 0.3s;
@@ -221,7 +222,7 @@ a {
     margin-right: 20px;
 }
 .star {
-    color: gold;
+    color: orange;
 }
 .container{
     display:flex;
