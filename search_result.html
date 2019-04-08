@@ -243,8 +243,8 @@
             <div  class = "recipeResult" id = "` + recipeDictionary['name'] + `" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
                 <a href = "https://www.google.ca/">
                     <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="75" width="220"; style="background-position: center"; position:"relative";></div>
-                    <h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
-                    `<span class = "timeandrating"><span class = "star">` + recipeDictionary['star'] + ` </span></span></h2></div>
+                    <h2 style = "color: whitesmoke;">` + recipeDictionary['name'] + `<small> by ` + recipeDictionary['author'] +
+                    `</small><span class = "timeandrating"><span class = "star">` + recipeDictionary['star'] + ` </span></span></h2></div>
                     <p style = "color: whitesmoke;">cooktime:  ` + recipeDictionary['cooktime'] + `</p>
                     <div><p style = "color: whitesmoke;"> Ingredients: ` + buildIngredientsList(recipeDictionary) + `</p></div>
                     <div><p style = "color: whitesmoke;"> Description: ` + recipeDictionary['description'] + ` </p></div>
