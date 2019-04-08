@@ -281,6 +281,13 @@ img {
     overflow: hidden;
     margin-right: 0px;
 }
+.box-wrapper {
+    float: center;
+    width : 400px;
+    height : 150px;
+    overflow: hidden;
+    margin-left: 37px;
+}
 .slider {
     -webkit-appearance: none;
     width: 75%;
@@ -346,4 +353,11 @@ td, th {
 
 tr:nth-child(even) {
     background-color: #dddddd;
+}
+
+.imadeit {
+    margin-bottom: 50px;
+}
+.boximage {
+
 }
