@@ -204,9 +204,10 @@ a {
     right: 0;
     color: white;
     background-color: rgba(45, 45, 45, 0.60);
-    min-width: 980px;
+    min-width: 800px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    margin-left: 69px;
 }
 .ingredient-content a {
     color: white;
@@ -275,7 +276,6 @@ img {
     height: auto;
 }
 
-
 .image-wrapper {
     float: left;
     width : 250px;
@@ -285,8 +285,8 @@ img {
 }
 .box-wrapper {
     float: center;
-    width : 900px;
-    height : 300px;
+    width : 300px;
+    height : 200px;
     overflow: hidden;
     margin-left: 100px;
 }
