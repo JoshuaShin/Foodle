@@ -8,11 +8,16 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     height: 100%;
 }
+
 h1 {
     font-size: 48px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: white;
     outline: none;
+}
+
+a {
+    cursor: pointer;
 }
 
 #loginButton{

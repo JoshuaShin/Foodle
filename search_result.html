@@ -5,18 +5,7 @@
 
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyBrGlVFqo2ixWMzeeq6ppt4jaMErC8H5LY",
-            authDomain: "foodle-d4b88.firebaseapp.com",
-            databaseURL: "https://foodle-d4b88.firebaseio.com",
-            projectId: "foodle-d4b88",
-            storageBucket: "foodle-d4b88.appspot.com",
-            messagingSenderId: "506441498159"
-        };
-        firebase.initializeApp(config);
-    </script>
+    <script src="./js/setup_firebase.js"></script>
 
     <style>
         .recipeResult {
@@ -57,7 +46,8 @@
     </style>
 </head>
 <body>
-    <a id="loginButton" href="login.html"><P>Sign in</p></a>
+    <script src="js/login.js"></script>
+
     <div>
         <div id = "searchTop2">
             <a id = "foodleLogo" class = "unselectable" href = "./index.html"><h1>FOODLE</h1></a>
@@ -107,8 +97,8 @@
         
     </div>
 
-
     <script src="js/search.js"></script>
+
     <script>    
         // ===== GLOBALS ===== //
         let recipeDatabase = {};
