@@ -197,8 +197,8 @@ a {
     display: none;
     position: absolute;
     right: 0;
-    color: white;
-    background-color: rgba(255,255,255,0.6);
+    color: rgba(24, 23, 23, 0.9);
+    background-color: rgba(255, 255, 255, 0.795);
     min-width: 990px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
