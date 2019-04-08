@@ -63,13 +63,19 @@
             <textarea id = "steps" rows = "6" cols = "110" placeholder="1. First step is..."></textarea>
             <p>Image upload</p>
             <div id="filesubmit">
-            <input id="imagename" type="file" class="file-select" accept="image/*"/>
+            <label class="fileContainer">
+                Choose the image file
+                <input id="imagename" type="file" class="file-select" accept="image/*"/>
             <textarea class = "hide" id = "urladdress" rows = "1" cols = "110" placeholder="https://"></textarea>
+            </label>
+            <button id = "addRecipeButton" style="float:right; margin-bottom: 200px;">+</button>
             </div>
-            <br/><br/>
-            <button id = "addRecipeButton">+</button>
+            
         </div> 
         
+    
+        
+
     <script>
 
 
