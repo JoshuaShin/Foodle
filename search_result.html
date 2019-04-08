@@ -9,14 +9,15 @@
 
     <style>
         .recipeResult {
-            border-radius: 1px;
-            background-color: rgba(45, 45, 45, 0.60);
-            padding: 20px;
-            padding-left: 20px;
-            border-color: rgba(45, 45, 45, 0.60);
+        border-radius: 1px;
+        background-color: rgba(45, 45, 45, 0.60);
+        padding: 20px;
+        padding-left: 20px;
+        border-color: rgba(45, 45, 45, 0.60);
         }
+
         a {
-            text-decoration: none;
+        text-decoration: none;
         }
         .dropbtn{
             text-align: left;
@@ -28,21 +29,45 @@
 
         #bottomStuff{
             /* position: absolute; */
-            position: absolute;
-            bottom: 0%;
-            left: 67%;
+            /* text-align: center; */
             /* bottom: 0;
             padding: 10px; */
         }
 
-        .item{
-            height: 50px;
-            width: 50px;
-            color: white;
+        .imageHolder{
+            position: relative;
+            height: 75%;
+            width: 75%;
+            left: 13%;
+
         }
-        /* #resultHolder {
-           padding-left: 23.75%; padding-right: 23.75%;
-        } */
+
+        .item{
+            height: 25px;
+            width: 25px;
+            color: white; 
+        }
+
+        #download{
+            position: absolute;
+            bottom: 5%;
+            width: 80%;
+            right: 9%;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            padding: 12px 24px;
+            border-radius: 1px;
+            font: normal normal bold 20px arial;
+            color: white;
+            background: rgba(45, 45, 45, 0.6)
+        }
+
+        .topStuff{
+            position: relative;
+            right: 0%;
+        }
+
     </style>
 </head>
 <body>
@@ -132,18 +157,18 @@
             for(let i = 0; i < searchPharseList.length; i++) {
                 if(meatandfish.includes(searchPharseList[i])) {
                     var para = document.createElement("th");
-                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" onchange="myFunction()" min="0" max="1000" value="500" class="slider" id="` + searchPharseList[i] + `">
-                    </br></br>gram : <span id="demo`+ i +`">500</span>g`;
+                    para.innerHTML = `</br>` + searchPharseList[i].toUpperCase() + `</br></br><input type="range" onchange="myFunction()" min="0" max="1000" value="500" class="slider" id="` + searchPharseList[i] + `">
+                    </br></br><span id="demo`+ i +`">500</span> gram`;
                     document.getElementById("tr1").appendChild(para);
                 }else if (liquid.includes(searchPharseList[i])){
                     var para = document.createElement("th");
-                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" onchange="myFunction()" min="0" max="1000" value="500" class="slider" id="` + searchPharseList[i] + `">
-                    </br></br>Liter : <span id="demo`+ i +`">500</span>ml`;
+                    para.innerHTML = `</br>` + searchPharseList[i].toUpperCase() + `</br></br><input type="range" onchange="myFunction()" min="0" max="1000" value="500" class="slider" id="` + searchPharseList[i] + `">
+                    </br></br><span id="demo`+ i +`">500</span> ml`;
                     document.getElementById("tr1").appendChild(para);
                 }else{
                     var para = document.createElement("th");
-                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" onchange="myFunction()" min="0" max="10" value="5" class="slider" id="` + searchPharseList[i] + `">
-                    </br></br>EA : <span id="demo`+ i +`">5</span>`;
+                    para.innerHTML = `</br>` + searchPharseList[i].toUpperCase() + `</br></br><input type="range" onchange="myFunction()" min="0" max="10" value="5" class="slider" id="` + searchPharseList[i] + `">
+                    </br></br><span id="demo`+ i +`">5</span> each`;
                     document.getElementById("tr1").appendChild(para); 
                 }
             }
@@ -186,7 +211,6 @@
 
                                 console.log(ingredientsUsed);
  
-
                                 
                             }
 
@@ -252,11 +276,11 @@
             `
             <div  class = "recipeResult" id = "` + recipeDictionary['name'] + `" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
                 <a href = "https://www.google.ca/">
-                    <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="100" width="300"></div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
+                    <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="100" width="300"; style="background-position: center"; position:"relative";></div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
                     `<span class = "timeandrating"><span class = "star">` + recipeDictionary['star'] + ` </span></span></h2></div>
-                    <div><p style = "color: whitesmoke;"> Description: ` + recipeDictionary['description'] + ` </p></div>
                     <p style = "color: whitesmoke;">cooktime:  ` + recipeDictionary['cooktime'] + `</p>
                     <div><p style = "color: whitesmoke;"> Ingredients: ` + buildIngredientsList(recipeDictionary) + `</p></div>
+                    <div><p style = "color: whitesmoke;"> Description: ` + recipeDictionary['description'] + ` </p></div>
                 </a>
             </div>
             ` + document.getElementById("resultHolder").innerHTML;
@@ -280,6 +304,12 @@
             document.getElementById("seperation").innerHTML = 
             `
             <div class = "okay">
+            <div>
+                <img src="images/download.png" class = "item">
+                <img src="images/printer.png" class = "item">
+            </div>
+            <br>
+            <br>
             <div><p style = "color: whitesmoke;"><b>Recipe Name: </b>` + recipeDictionary['name'] + `</p></div>
             <br>   
             <div><p style = "color: whitesmoke;"><b>Description: </b>` + recipeDictionary['description'] + `</p></div>
@@ -290,12 +320,8 @@
             <br>
             <div><p style = "color: whitesmoke;"><b>Recipe Steps: </b>` + recipeDictionary['steps'] + `</p></div>
             <br>
-            <div><img src="`+ recipeDictionary['image'] + `"></p></div>
-            <div id = "bottomStuff">
-                <img src="images/download.png" class = "item">
-                <img src="images/printer.png" class = "item">
-                <img src="images/save.png" class = "item" onclick = "madeThisRecipe()">
-            </div>
+            <div><img class = "imageHolder" src="`+ recipeDictionary['image'] + `"></p></div>
+            <button type="button" id = "download" onclick = "madeThisRecipe()">I Made This!</button>
             </div>`; 
 
             document.getElementById('seperation').style.display = 'block';
