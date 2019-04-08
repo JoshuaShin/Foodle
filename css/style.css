@@ -286,8 +286,9 @@ img {
 .image-wrapper {
     float: left;
     width : 250px;
-    height : 230px;
+    height : 150px;
     overflow: hidden;
+    margin-top : 0px;
     margin-right: 0px;
 }
 .box-wrapper {
