@@ -21,6 +21,10 @@ a {
     cursor: pointer;
 }
 
+textarea {
+    width: 100%;
+}
+
 #loginButton {
     position: absolute;
     top: 1em;
