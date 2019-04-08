@@ -14,6 +14,7 @@ h1 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: orange;
     outline: none;
+    word-spacing: -10px;
 }
 
 a {
