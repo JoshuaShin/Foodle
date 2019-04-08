@@ -25,7 +25,7 @@ function setSignInOrOut() {
 function signInOrOut() {
     firebase.auth().onAuthStateChanged(function(user){
         if(user){
-            firebase.auth().signOut(); // signout
+            firebase.auth().signOut();
             window.alert("Logged out");
         } else {
             window.location.href = "./login.html";

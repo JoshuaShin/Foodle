@@ -34,8 +34,6 @@ function filterSearchResult(x) {
     return clean;
 }
 
-
-
 function buildSearchPhraseResult(searchPhrase) {
     searchPhraseList = [];
     searchItem = "";
