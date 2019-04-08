@@ -51,12 +51,14 @@
         <div id = "createRecipeHolder">
             <p>Title</p>
             <textarea id = "title" rows = "1" cols = "110" placeholder="Your Amazing Recipe!"></textarea>
+            <p>Author</p>
+            <textarea id = "author" rows = "1" cols = "110" placeholder="Your name"></textarea>
             <p>Cook Time (Minutes)</p>
             <textarea id = "cooktime" rows = "1" cols = "110" placeholder="15"></textarea>
-            <p>Description</p>
-            <textarea id = "description" rows = "6" cols = "110" placeholder="Tell us about your dish"></textarea>
             <p>Ingredients</p>
             <textarea id = "ingredients" rows = "1" cols = "110" placeholder="#Carrots #Peas #Potatoes"></textarea>
+            <p>Description</p>
+            <textarea id = "description" rows = "6" cols = "110" placeholder="Tell us about your dish"></textarea>
             <p>Steps</p>
             <textarea id = "steps" rows = "6" cols = "110" placeholder="1. First step is..."></textarea>
             <p>Image upload</p>
@@ -127,17 +129,19 @@
 
         function writeRecipe() {
             let title = document.getElementById("title").value;
+            let author = document.getElementById("author").value;
             let cooktime = document.getElementById("cooktime").value;
             let image = document.getElementById("urladdress").value;
             let description = document.getElementById("description").value;
             let ingredients = buildSearchPhraseResult(document.getElementById("ingredients").value);
             let steps = document.getElementById("steps").value;
 
-            if (!title || !description || !ingredients || !steps) {
+            if (!title || !description || !ingredients || !steps || !author || !cooktime) {
                 window.alert("Empty field!");
             } else {
                 let dbref = firebase.database().ref("recipes/" + title).set({
                     "name": title,
+                    "author": author,
                     "cooktime": cooktime,
                     "image" : image,
                     "description": description,
