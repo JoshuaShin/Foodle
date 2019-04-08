@@ -20,12 +20,28 @@ a {
     cursor: pointer;
 }
 
-#loginButton{
+#loginButton {
     position: absolute;
-    right: 2.5%;
+    top: 1em;
+    right: 2em;
     text-decoration: none;
     color: white;
-    
+}
+
+#profileButton {
+    position: absolute;
+    top: 1em;
+    right: 7em;
+    text-decoration: none;
+    color: white;
+}
+
+#addRecipeButtonTop {
+    position: absolute;
+    top: 1em;
+    right: 11.5em;
+    text-decoration: none;
+    color: white;
 }
 
 #foodleLogo {

@@ -14,6 +14,8 @@ function setSignInOrOut() {
     firebase.auth().onAuthStateChanged(function(user){
         if(user) {
             document.getElementById("loginButton").innerHTML = "Sign out";
+            setUpProfileButton();
+            setUpAddRecipeButton();
         } else {
             document.getElementById("loginButton").innerHTML = "Sign in";
         }
