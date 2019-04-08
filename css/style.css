@@ -142,6 +142,7 @@ a {
     padding-left: 20px;
 }
 .dropbtn {
+    position: fixed;
     background-color: rgba(45, 45, 45, 0.60);
     color: white;
     padding: 10px;
@@ -149,6 +150,7 @@ a {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border: none;
     cursor: pointer;
+    left: 61.5%;
 }
 .ingredientbtn {
     position: fixed;
