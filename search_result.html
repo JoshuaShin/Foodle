@@ -275,7 +275,7 @@
             <div class ="box-wrapper"><img src="`+ recipeDictionary['image'] +`" width="300"></div>
             <div><p style = "color: whitesmoke;">` + recipeDictionary['description'] + `</p></div>
             <br>
-            <div><p style = "color: whitesmoke;"><b>Recipe Steps: </b>` + recipeDictionary['steps'] + `</p></div>
+            <div><p style = "color: whitesmoke; word-wrap: break-word;"><b>Steps: <br></b>` + recipeDictionary['steps'].split("\n").join("<br>") + `</p></div>
             <button class="imadeit"type="button" id = "download" onclick = "madeThisRecipe()">I Made This!</button>
             </div>`; 
             document.getElementById('seperation').style.display = 'block';
