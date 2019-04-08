@@ -23,18 +23,16 @@
             text-align: left;
         }
         #resultHolder{
-            position: fixed;
-            left: 2.8%;
-            padding:20px;
+            padding:70px;
             width:60%;
         }
 
-        #bottomStuff{
+        /*#bottomStuff{*/
             /* position: absolute; */
             /* text-align: center; */
             /* bottom: 0;
             padding: 10px; */
-        }
+        /*}*/
 
         .imageHolder{
             position: relative;
@@ -52,6 +50,7 @@
 
         #download{
             position: absolute;
+            bottom: 5%;
             bottom: 0%;
             width: 80%;
             right: 9%;
@@ -62,7 +61,7 @@
             border-radius: 1px;
             font: normal normal bold 20px arial;
             color: white;
-            background: rgba(45, 45, 45, 0.4);
+            background: rgba(45, 45, 45, 0.4)
         }
 
         .topStuff{
@@ -82,9 +81,9 @@
             <a id = "foodleLogo" class = "unselectable" href = "./index.html"><h1>FOODLE</h1></a>
             <input id = "searchBar" type = "text" placeholder = "#Carrot #Potato #Chicken">
             <button id = "searchButton">Q</button>
-            
         </div>
-        <div class="ingredientdown" style="float:left; position: absolute; left: 1.2%">
+
+        <div class="ingredientdown" style="float:left; position: absolute;">
             <button class="ingredientbtn">ingredients</button>
             <div class="ingredient-content" style="left:0;">
                 <table class="buttontable">
@@ -92,7 +91,8 @@
                 </table>
             </div>
         </div>
-        <div class="dropdown" style="float:right; position: absolute; right: 47%">
+
+        <div class="dropdown" style="float:right; position: absolute; left: 61%">
             <button class="dropbtn">sort</button>
             <div class="dropdown-content" style="right:0;">
                 <a onclick="alphabetical()">alphabetical</a>
@@ -102,28 +102,21 @@
             </div>
         </div>
 
-        
-
         <br/>
 
         <div class = 'container'>
-        <div id = "resultHolder" class = "resultHolder">
-            <div class = "displayresult">
-            </div>
+            <div id = "resultHolder" class = "resultHolder">
+                <div class = "displayresult"></div>
 
-            <div class = "AddRecipe">
-                <a href = "./create_recipe.html">
-                    <h2 style = "color: whitesmoke;">Add Recipe</h2>    
-                </a>
+                <div class = "AddRecipe">
+                    <a href = "./create_recipe.html">
+                        <h2 style = "color: whitesmoke;">Add Recipe</h2>    
+                    </a>
+                </div>
+                </br>
             </div>
-            </br>
+            <div id = 'seperation' class = 'seperation'></div>
         </div>
-
-        <div id = 'seperation' class = 'seperation'></div>
-        </div>
-    </div>
-        </div>
-        
     </div>
 
     <script src="js/search.js"></script>
@@ -135,6 +128,7 @@
         let searchPharseList = [];
         let currentRecipe = '';
         // ===== GLOBALS ===== //
+
         // ===== ASYNCHRONOUS TASKS: DATABASE RETRIEVAL & DISPLAY SEARCH RESULT ===== //
         var dbref = firebase.database().ref().child("recipes");
         dbref.on(
@@ -144,6 +138,7 @@
                 matchResultToDatabase();
             });
         // ===== ASYNCHRONOUS TASKS: DATABASE RETRIEVAL & DISPLAY SEARCH RESULT ===== //
+
         // ===== SYNCHRONOUS TASKS ===== //
         searchPharseList = JSON.parse(sessionStorage.getItem("searchPhraseList")); //["chicken", "onion", "pepper", "rice"];
         document.getElementById('searchBar').value = sessionStorage.getItem("searchPhrase");
@@ -154,7 +149,7 @@
         };
         // ===== SYNCHRONOUS TASKS ===== //
 
-        // ===== KANGMIN WORKING ON HERE ===== //
+        // ===== FUNCTIONS ===== //
         function maketr1() {
             for(let i = 0; i < searchPharseList.length; i++) {
                 if(meatandfish.includes(searchPharseList[i])) {
@@ -185,69 +180,42 @@
 
             firebase.auth().onAuthStateChanged(function(user){
                 if(user){
-                    console.log(user.uid)
-
                     var dbref = firebase.database().ref().child("users/" + user.uid + "/ingredients/");
                     dbref.on(
                         "value",
                         function(snap) {
                             let existingIngredientsUsed = snap.val();
-                            console.log(existingIngredientsUsed);
-
                             for (var key in existingIngredientsUsed) {
                                 ingredientsUsed[key] = existingIngredientsUsed[key];
-                                console.log(ingredientsUsed);
                             }
-                            console.log(sliders.length)
 
                             for(let i = 0; i < sliders.length; i++) {
-
                                 if (sliders[i].id in ingredientsUsed) {
                                     ingredientsUsed[sliders[i].id] += Number(sliders[i].value);
                                 }
                                 else {
                                     ingredientsUsed[sliders[i].id] = Number(sliders[i].value);
                                 }
-
                                 historyMade[new Date().toString()] = currentRecipe;
-
-                                console.log(ingredientsUsed);
- 
-                                
                             }
-
                         });
-
                         setTimeout(function(){
                             recordHistoryAndIngredients(historyMade, ingredientsUsed, user.uid)
                             window.alert(currentRecipe + " added to history!");
                         }, 1000); 
-
                 }
-
-
-
-
             })
-            
-
-
-            
         }
 
         function recordHistoryAndIngredients(historyMade, ingredientsUsed, uid) {
+            let dbref = firebase.database().ref("users/" + uid + "/history/").update(
+                historyMade
+            );
+            let dbref2 = firebase.database().ref("users/" + uid + "/ingredients/").set(
+                ingredientsUsed
+            );
+        }
 
-                    let dbref = firebase.database().ref("users/" + uid + "/history/").update(
-                        historyMade
-                    );
-                    let dbref2 = firebase.database().ref("users/" + uid + "/ingredients/").set(
-                        ingredientsUsed
-                    );
-                }
-
-        
-        
-    
         function myFunction() {
             let sliders = document.getElementsByClassName("slider");
             for(let i = 0; i < searchPharseList.length; i++) {
@@ -256,10 +224,6 @@
             }
         }
 
-        // ===== KANGMIN WORKING ON HERE ===== //
-
-        
-        // ===== FUNCTIONS ===== //
         function matchResultToDatabase() {
             for(let recipe in recipeDatabase) {
                 let ingredients = recipeDatabase[recipe]['ingredients'];
@@ -278,7 +242,7 @@
             `
             <div  class = "recipeResult" id = "` + recipeDictionary['name'] + `" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
                 <a href = "https://www.google.ca/">
-                    <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="100" width="300"; style="background-position: center"; position:"relative";></div>
+                    <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="70" width="210"; style="background-position: center"; position:"relative";></div>
                     <h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
                     `<span class = "timeandrating"><span class = "star">` + recipeDictionary['star'] + ` </span></span></h2></div>
                     <p style = "color: whitesmoke;">cooktime:  ` + recipeDictionary['cooktime'] + `</p>
@@ -307,26 +271,15 @@
             document.getElementById("seperation").innerHTML = 
             `
             <div class = "okay">
-            <div><p style = "color: whitesmoke; text-align: center; font-size: 30px; font-family:'Comic Sans MS', cursive, sans-serif;"><b>` + recipeDictionary['name'] + `</b></p></div>
-            <div class ="box-wrapper"><p text-align: center;><img src="`+ recipeDictionary['image'] +`" height="150;" width="400;"><p></div>
+            <div><p style = "color: whitesmoke; text-align: center; font-size: 30px; "><b>` + recipeDictionary['name'] + `</b></p></div>
+            <div class ="box-wrapper"><img src="`+ recipeDictionary['image'] +`" height="100;" width="300;"></div>
+            <div><p style = "color: whitesmoke;">` + recipeDictionary['description'] + `</p></div>
             <br>
-            <div><p style = "color: whitesmoke; font-family:'Comic Sans MS', cursive, sans-serif;">` + recipeDictionary['description'] + `</p></div>
-            <br>
-            <div><p style = "color: whitesmoke;" font-family:'Comic Sans MS', cursive, sans-serif;><b>Recipe Steps: </b>` + recipeDictionary['steps'] + `</p></div>
+            <div><p style = "color: whitesmoke;"><b>Recipe Steps: </b>` + recipeDictionary['steps'] + `</p></div>
             <button class="imadeit"type="button" id = "download" onclick = "madeThisRecipe()">I Made This!</button>
             </div>`; 
             document.getElementById('seperation').style.display = 'block';
         }
-
-            // 
-            // <br>
-            // <div class = "star"><b>Rating: </b>` + recipeDictionary['star'] + `<spnn style = "color: whitesmoke;"><b>Cooktime: </b>` + recipeDictionary['cooktime'] + `</span></div>
-            // 
-            // <br>
-            // <div><p style = "color: whitesmoke;"><b>Description: </b>` + recipeDictionary['description'] + `</p></div>
-            // <br>
-            
-            // 
 
         function closedown(){
             document.getElementById('seperation').style.display = 'none';
