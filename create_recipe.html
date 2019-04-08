@@ -30,7 +30,7 @@
         }
         textarea {
             border-radius: 1px;
-            background-color: rgba(45, 45, 45, 0.60);
+            background-color: rgba(45, 45, 45, 0.40);
             padding: 10px;
             outline: none;
             color: whitesmoke;
@@ -88,14 +88,16 @@
         }
 
         function handleFileUploadSubmit(e) {
-        const uploadTask = storageRef.child(`images/${selectedFile.name}`).put(selectedFile);
-        uploadTask.on('state_changed', (snapshot) => {
-        }, (error) => {
-            console.log(error);
-        }, () => {
-            getURLaddress();
-            console.log('success');
-        });
+            if(selectedFile) {
+                const uploadTask = storageRef.child(`images/${selectedFile.name}`).put(selectedFile);
+                uploadTask.on('state_changed', (snapshot) => {
+                }, (error) => {
+                    console.log(error);
+                }, () => {
+                    getURLaddress();
+                    console.log('success');
+                });
+            }
         }
 
         // function imgname() {
@@ -137,7 +139,7 @@
             let steps = document.getElementById("steps").value;
 
             if (!title || !description || !ingredients || !steps || !author || !cooktime) {
-                window.alert("Empty field!");
+                window.alert("Recipe is incomplete!");
             } else {
                 let dbref = firebase.database().ref("recipes/" + title).set({
                     "name": title,
