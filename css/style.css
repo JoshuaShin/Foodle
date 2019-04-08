@@ -180,7 +180,6 @@ a {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
-
 .dropdown-content a {
     color: white;
     padding: 10px 14px;
@@ -197,37 +196,32 @@ a {
     display: none;
     position: absolute;
     right: 0;
-    color: rgba(24, 23, 23, 0.9);
+    color: white;
     background-color: rgba(45, 45, 45, 0.60);
+    min-width: 980px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
-
 .ingredient-content a {
     color: white;
     padding: 10px 14px;
     text-decoration: none;
     font-size: 14px;
-    text-align: right;
+    text-align: center;
     display: block;
 }
-
 .timeandrating {
     float: right;
     font-size: 16px;
     margin-right: 20px;
 }
-
 .star {
     color: gold;
 }
-
-
 .container{
     display:flex;
     margin:0; 
 }
-
 .recipeResult::after {
     content: "";
     clear: both;
@@ -292,7 +286,7 @@ img {
     width: 75%;
     height: 10px;
     border-radius: 5px;
-    background: rgba(45, 45, 45, 0.60);
+    background: white;
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
@@ -309,7 +303,7 @@ img {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background:rgb(0, 0, 0);
+    background:rgba(45, 45, 45, 0.795);
     cursor: pointer;
 }
   
@@ -317,7 +311,7 @@ img {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: rgb(0, 0, 0);
+    background: rgba(45, 45, 45, 0.60);
     cursor: pointer;
 }
 .tablecontents th {
@@ -333,21 +327,14 @@ img {
 .dropdown-content a:hover {background-color: rgba(0, 0, 0, 0.6);}
 .dropdown:hover .dropdown-content {display: block;}
 .dropdown:hover .dropbtn {background-color: rgba(45, 45, 45, 0.60);}
-.ingredient-content a:hover {background-color: rgba(0, 0, 0, 0.6);}
+.ingredient-content a:hover {background-color: rgba(45, 45, 45, 0.60);}
 .ingredientdown:hover .ingredient-content {display: block;}
-.ingredientdown:hover .ingredientbtn {background-color: rgba(45, 45, 45, 0.60);}
+.ingredientdown:hover .ingredientbtn {background-color: rgba(45, 45, 45, 0.6);} 
 
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-    color: whitesmoke;
 }
 
 tr:nth-child(even) {
