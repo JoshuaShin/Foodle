@@ -1,6 +1,6 @@
 body {
     background-color: black; /*rgb(255, 185, 0)*/
-    background-image: url("../images/chopping_board_dark.jpg");
+    background-image: url("../images/background_edit.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -330,3 +330,20 @@ img {
 .ingredient-content a:hover {background-color: rgba(0, 0, 0, 0.6);}
 .ingredientdown:hover .ingredient-content {display: block;}
 .ingredientdown:hover .ingredientbtn {background-color: rgba(45, 45, 45, 0.60);}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    color: whitesmoke;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}

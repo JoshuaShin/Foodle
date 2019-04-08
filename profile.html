@@ -22,9 +22,6 @@
             color: whitesmoke;
             text-align: center;
         }
-        #scoreBoard {
-
-        }
     </style>
 </head>
 <body>    
@@ -34,13 +31,11 @@
         </div>
 
         <br/>
+        <center>
+            <div id = "scoreBoard" style = "width: 50%; border: 1px solid whitesmoke;"></div>
+        </center>
 
-        <div id = "scoreBoard">
-
-            
-        </div> 
-
-        
+    <script src="js/ingredient_type_database.js"></script>
     <script>
 
     firebase.auth().onAuthStateChanged(function(user){
@@ -62,7 +57,9 @@
     function displayScore(user_info) {
         document.getElementById("scoreBoard").innerHTML = 
         `
-        <p style = "font-size: 24px"><b>History:</b></p><br>
+        <p style = "font-size: 24px"><b>Cooked History</b></p>
+        <hr>
+        <br>
         `
 
         history_info = user_info["history"];
@@ -71,7 +68,7 @@
             document.getElementById("scoreBoard").innerHTML += 
             `
             <div class = "entry">
-                <div><p style = "color: whitesmoke;"><b>` + key.split(" ").splice(0, 4).join(" ") + `<b>: ` + history_info[key] + `</p></div>   
+                <div><p style = "color: whitesmoke; font-size: 22px"><b>` + key.split(" ").splice(0, 4).join(" ") + `<b></p><p>` + history_info[key] + `</p></div>   
             </div>
             <br>
             `
@@ -79,24 +76,32 @@
 
         document.getElementById("scoreBoard").innerHTML += 
         `
-        <p style = "font-size: 24px"><b>Your total savings:</b></p><br>
+        <hr>
+        <p style = "font-size: 24px"><b>Total Saving</b></p>
+        <hr>
+        <br>
         `
 
         ingredient_info = user_info["ingredients"];
         for (var key in ingredient_info) {
+            if (meatandfish.includes(key)) {
+                unit = " g";
+            } else if (key in liquid) {
+                unit = " ml"; 
+            } else {
+                unit = " each";
+            }
 
             document.getElementById("scoreBoard").innerHTML += 
             `
             <div class = "entry">
-                <div><p style = "color: whitesmoke;"><b>` + key + `<b>: ` + ingredient_info[key] + `</p></div>   
+                <div><p style = "color: whitesmoke; font-size: 22px;"><b>` + key + `<b></p><p>` + ingredient_info[key] + unit + `</p></div>   
             </div>
             <br>
             `
         }
     }
 
-
-    // firebase.auth().signOut() // signout
     </script>
 
 
