@@ -12,7 +12,7 @@ body {
 h1 {
     font-size: 48px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: white;
+    color: orange;
     outline: none;
 }
 
@@ -100,8 +100,8 @@ a {
     height: 36.5px;
     width: 36.5px;
     font-size: 17px;
-    background-color: white;
-    color: rgb(45, 45, 45);
+    background-color: orange;
+    color: whitesmoke;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -117,7 +117,7 @@ a {
     transition-duration: 0.3s;
 }
 #searchButton:active {
-    background-color: white;
+    background-color: whitesmoke;
     /* color: black; */
     
     -webkit-transition-duration: 0.3s;
