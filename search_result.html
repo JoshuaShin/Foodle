@@ -133,18 +133,18 @@
             for(let i = 0; i < searchPharseList.length; i++) {
                 if(meatandfish.includes(searchPharseList[i])) {
                     var para = document.createElement("th");
-                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" onchange="myFunction()" min="0" max="1000" value="500" class="slider" id="` + searchPharseList[i] + `">
-                    </br></br>gram : <span id="demo`+ i +`">500</span>g`;
+                    para.innerHTML = `</br>` + searchPharseList[i].toUpperCase() + `</br></br><input type="range" onchange="myFunction()" min="0" max="1000" value="500" class="slider" id="` + searchPharseList[i] + `">
+                    </br></br><span id="demo`+ i +`">500</span> gram`;
                     document.getElementById("tr1").appendChild(para);
                 }else if (liquid.includes(searchPharseList[i])){
                     var para = document.createElement("th");
-                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" onchange="myFunction()" min="0" max="1000" value="500" class="slider" id="` + searchPharseList[i] + `">
-                    </br></br>Liter : <span id="demo`+ i +`">500</span>ml`;
+                    para.innerHTML = `</br>` + searchPharseList[i].toUpperCase() + `</br></br><input type="range" onchange="myFunction()" min="0" max="1000" value="500" class="slider" id="` + searchPharseList[i] + `">
+                    </br></br><span id="demo`+ i +`">500</span> ml`;
                     document.getElementById("tr1").appendChild(para);
                 }else{
                     var para = document.createElement("th");
-                    para.innerHTML = `</br>` + searchPharseList[i] + `</br></br><input type="range" onchange="myFunction()" min="0" max="10" value="5" class="slider" id="` + searchPharseList[i] + `">
-                    </br></br>EA : <span id="demo`+ i +`">5</span>`;
+                    para.innerHTML = `</br>` + searchPharseList[i].toUpperCase() + `</br></br><input type="range" onchange="myFunction()" min="0" max="10" value="5" class="slider" id="` + searchPharseList[i] + `">
+                    </br></br><span id="demo`+ i +`">5</span> each`;
                     document.getElementById("tr1").appendChild(para); 
                 }
             }
@@ -187,7 +187,6 @@
 
                                 console.log(ingredientsUsed);
  
-
                                 
                             }
 
@@ -253,7 +252,7 @@
             `
             <div  class = "recipeResult" id = "` + recipeDictionary['name'] + `" data-cooktime = "`+ recipeDictionary['cooktime'] +`"data-rating = "`+ recipeDictionary['rating'] +`>
                 <a href = "https://www.google.ca/">
-                    <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="100" width="300"></div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
+                    <div><div class ="image-wrapper"><img src="`+ recipeDictionary['image'] +`" height="100" width="300"; style="background-position: center"; position:"relative";></div><h2 style = "color: whitesmoke;"> ` + recipeDictionary['name'] + 
                     `<span class = "timeandrating"><span class = "star">` + recipeDictionary['star'] + ` </span></span></h2></div>
                     <div><p style = "color: whitesmoke;"> Description: ` + recipeDictionary['description'] + ` </p></div>
                     <p style = "color: whitesmoke;">cooktime:  ` + recipeDictionary['cooktime'] + `</p>
