@@ -110,6 +110,7 @@ textarea {
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    cursor: pointer;
 
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
@@ -137,6 +138,7 @@ textarea {
 }
 .recipeResult {
     margin-top:25px;
+    cursor: pointer;
 }
 .AddRecipe {
     margin-top:25px;
@@ -261,6 +263,7 @@ textarea {
     height: 80%;
     right: 25%;
     top: 10%;
+    pointer-events: none;
 }
 /* #bottomStuff {
     position: absolute;
@@ -355,4 +358,5 @@ tr:nth-child(even) {
 
 .imadeit {
     margin-bottom: 5%;
+    cursor: pointer;
 }
