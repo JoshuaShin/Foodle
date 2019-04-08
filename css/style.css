@@ -135,27 +135,30 @@ a {
 .AddRecipe {
     margin-top:25px;
     border-radius: 1px;
-    background-color: rgba(45, 45, 45, 0.60);
+    background-color: rgba(45, 45, 45, 0.40);
     padding: 1px;
     padding-left: 20px;
+    border: 1px solid white;
 }
 .dropbtn {
-    background-color: rgba(45, 45, 45, 0.60);
+    background-color: rgba(45, 45, 45, 0.40);
     color: white;
     padding: 10px;
     font-size: 14px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border: none;
     cursor: pointer;
+    border: 1px solid white;
 }
 .ingredientbtn {
-    background-color: rgba(45, 45, 45, 0.60);
+    background-color: rgba(45, 45, 45, 0.40);
     color: white;
     padding: 10px;
     font-size: 14px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border: none;
     cursor: pointer;
+    border: 1px solid white;
 }
 .GetthisRecipe {
     background-color: black;
