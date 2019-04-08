@@ -285,7 +285,8 @@ img {
     width : 250px;
     height : 150px;
     overflow: hidden;
-    margin-top : 0px;
+    margin-top : 7px;
+    margin-bottom: 30px;
     margin-right: 0px;
 }
 .box-wrapper {
@@ -341,7 +342,6 @@ img {
 .dropdown-content a:hover {background-color: rgba(0, 0, 0, 0.6);}
 .dropdown:hover .dropdown-content {display: block;}
 .dropdown:hover .dropbtn {background-color: rgba(45, 45, 45, 0.60);}
-.ingredient-content a:hover {background-color: rgba(45, 45, 45, 0.60);}
 .ingredientdown:hover .ingredient-content {display: block;}
 .ingredientdown:hover .ingredientbtn {background-color: rgba(45, 45, 45, 0.6);} 
 
