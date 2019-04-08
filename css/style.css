@@ -362,3 +362,7 @@ tr:nth-child(even) {
     margin-bottom: 5%;
     cursor: pointer;
 }
+
+#imagename {
+    color: whitesmoke;
+}
