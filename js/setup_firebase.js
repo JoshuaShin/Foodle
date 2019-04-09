@@ -1,5 +1,4 @@
-(function(){  
-
+(function() {
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyBrGlVFqo2ixWMzeeq6ppt4jaMErC8H5LY",
@@ -11,4 +10,4 @@
     };
     firebase.initializeApp(config);
     app_firebase = firebase; 
-  })();
+})();

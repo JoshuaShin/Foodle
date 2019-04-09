@@ -2,42 +2,24 @@
 <html>
 <head>
     <link rel = "stylesheet" type = "text/css" href = "css/style.css">
+    <link rel = "stylesheet" type = "text/css" href = "css/style_profile.css">
 
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./js/setup_firebase.js"></script>
-
-    <style>
-        #frame {
-            padding-left: 23.75%; padding-right: 23.75%;
-        }
-        textarea {
-            border-radius: 1px;
-            background-color: rgba(45, 45, 45, 0.40);
-            padding: 10px;
-            outline: none;
-            color: whitesmoke;
-        }
-        p {
-            color: whitesmoke;
-            text-align: center;
-        }
-    </style>
 </head>
 <body>    
     <div>
         <div id = "searchTop">
             <a id = "foodleLogo" class = "unselectable" href = "./index.html"><h1>F O O D L E</h1></a>
         </div>
-
-        <br/>
-        <center>
-            <div id = "scoreBoard" style = "width: 40%; border: 1px solid whitesmoke; background-color: rgba(45, 45, 45, 0.40);"></div>
-        </center>
+        <br>
+        <center><div id = "scoreBoard" style = "width: 40%; border: 1px solid whitesmoke; background-color: rgba(45, 45, 45, 0.40);"></div></center>
+    </div>
 
     <script src="js/ingredient_type_database.js"></script>
     <script>
-
+    // ===== ASYNCHRONOUS TASKS ===== //
     firebase.auth().onAuthStateChanged(function(user){
         if(user){
             console.log(user.uid)
@@ -52,8 +34,9 @@
                 });
         }
     })
+    // ===== ASYNCHRONOUS TASKS ===== //
 
-
+    // ===== FUNCTIONS ===== //
     function displayScore(user_info) {
         document.getElementById("scoreBoard").innerHTML = 
         `
@@ -101,9 +84,7 @@
             `
         }
     }
-
+    // ===== FUNCTIONS ===== //
     </script>
-
-
 </body>
 </html>

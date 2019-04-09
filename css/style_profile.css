@@ -1,4 +1,4 @@
-#createRecipeHolder {
+#frame {
     padding-left: 23.75%; padding-right: 23.75%;
 }
 textarea {
@@ -10,4 +10,5 @@ textarea {
 }
 p {
     color: whitesmoke;
+    text-align: center;
 }

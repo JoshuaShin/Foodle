@@ -2,74 +2,11 @@
 <html>
 <head>
     <link rel = "stylesheet" type = "text/css" href = "css/style.css">
+    <link rel = "stylesheet" type = "text/css" href = "css/style_search_result.css">
 
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./js/setup_firebase.js"></script>
-
-    <style>
-        .recipeResult {
-            border-radius: 1px;
-            background-color: rgba(45, 45, 45, 0.40);
-            padding: 20px;
-            padding-left: 20px;
-            border: 1px solid white;
-        }
-
-        a {
-            text-decoration: none;
-        }
-        .dropbtn{
-            text-align: left;
-        }
-        #resultHolder{
-            padding:70px;
-            width:60%;
-        }
-
-        /*#bottomStuff{*/
-            /* position: absolute; */
-            /* text-align: center; */
-            /* bottom: 0;
-            padding: 10px; */
-        /*}*/
-
-        .imageHolder{
-            position: relative;
-            height: 75%;
-            width: 75%;
-            left: 13%;
-
-        }
-
-        .item{
-            height: 25px;
-            width: 25px;
-            color: white; 
-        }
-
-        #download{
-            position: absolute;
-            bottom: 5%;
-            bottom: 0%;
-            width: 80%;
-            right: 9%;
-            display: inline-block;
-            text-align: center;
-            vertical-align: middle;
-            padding: 12px 24px;
-            border-radius: 1px;
-            font: normal normal bold 20px arial;
-            color: white;
-            background: rgba(45, 45, 45, 0.4)
-        }
-
-        .topStuff{
-            position: relative;
-            right: 0%;
-        }
-
-    </style>
 </head>
 <body>
     <script src="js/add_recipe.js"></script>
@@ -121,7 +58,6 @@
 
     <script src="js/search.js"></script>
     <script src="js/ingredient_type_database.js"></script>
-
     <script>    
         // ===== GLOBALS ===== //
         let recipeDatabase = {};
@@ -147,6 +83,7 @@
                 return arr.indexOf(val) < 0;
             });
         };
+        maketr1();
         // ===== SYNCHRONOUS TASKS ===== //
 
         // ===== FUNCTIONS ===== //
@@ -170,8 +107,6 @@
                 }
             }
         }
-
-        maketr1();
 
         function madeThisRecipe() {
             let sliders = document.getElementsByClassName("slider");
@@ -253,6 +188,7 @@
             ` + document.getElementById("resultHolder").innerHTML;
             hide();
         }
+
         function assignRecipeOnClick() {
             let resultHolderChildren = document.getElementById("resultHolder").children;
             for (let i = 0; i < resultHolderChildren.length; i++) {
@@ -263,9 +199,11 @@
                 }
             }
         }
+
         function hide(){
             document.getElementById('seperation').style.display = 'none';
         }
+
         function openup(recipeDictionary){
             currentRecipe = recipeDictionary['name'];
             document.getElementById("seperation").innerHTML = 
@@ -284,9 +222,11 @@
         function closedown(){
             document.getElementById('seperation').style.display = 'none';
         }
+
         function buildIngredientsList(recipeDictionary) {
             return recipeDictionary['ingredients'].join(', ');
         }
+
         function alphabetical() {
             $('.recipeResult').sort(function(a, b) {
                 if (a.textContent < b.textContent) {
@@ -296,6 +236,7 @@
                 }
                 }).appendTo('.displayresult');
         }
+
         function cooktime() {
             $('.recipeResult').sort(function(a, b) {
                 if ($(a).data('cooktime') < $(b).data('cooktime')) {
@@ -305,6 +246,7 @@
                 }
                 }).appendTo('.displayresult');
         }
+
         function userrating() {
             $('.recipeResult').sort(function(a, b) {
                 if ($(a).data('rating') > $(b).data('rating')) {
